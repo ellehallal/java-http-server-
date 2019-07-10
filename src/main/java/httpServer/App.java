@@ -1,4 +1,4 @@
 package httpServer;
 
-public class App {
+class App {
 }
