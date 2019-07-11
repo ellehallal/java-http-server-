@@ -19,7 +19,7 @@ public class FakeServerSocket extends ServerSocket {
     }
 
     private FakeClientSocket setupFakeClientSocket() {
-        var clientMessage = "GET / HTTP/1.1";
+        var clientMessage = "GET /simple_get HTTP/1.1";
         var input = new ByteArrayInputStream(clientMessage.getBytes());
         var output =  new ByteArrayOutputStream();
         return new FakeClientSocket(input, output);

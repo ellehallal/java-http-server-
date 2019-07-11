@@ -13,8 +13,10 @@ public class RequestResponseHandler {
     }
 
     public void run() {
-        receiveRequest();
-        sendResponse("HTTP/1.1 200 OK");
+        var request = receiveRequest();
+        var response = new RouteHandler(request).getResponse();
+
+        sendResponse(response);
     }
 
     private String receiveRequest() {

@@ -10,9 +10,10 @@ import java.io.StringWriter;
 import static org.junit.jupiter.api.Assertions.*;
 
 class RequestResponseHandlerTest {
+
     @Test
     void acceptsARequestAndOutputsTheExpectedResponse() {
-        var clientRequest = "GET / HTTP/1.1";
+        var clientRequest = "GET /simple_get HTTP/1.1";
         var stringReader = new StringReader(clientRequest);
         var input = new BufferedReader(stringReader);
         var expectedResponse = "HTTP/1.1 200 OK\n";
