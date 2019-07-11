@@ -16,7 +16,7 @@ class RequestSplitterTest {
         var requestHandler = new RequestHandler(input);
         var request = requestHandler.readResponse();
 
-        var requestMethod = RequestSplitter.getRequestMethod(request);
+        var requestMethod = new RequestSplitter(request).getRequestMethod();
 
         assertEquals("GET", requestMethod);
 
@@ -29,7 +29,7 @@ class RequestSplitterTest {
         var requestHandler = new RequestHandler(input);
         var request = requestHandler.readResponse();
 
-        var requestMethod = RequestSplitter.getRequestPath(request);
+        var requestMethod = new RequestSplitter(request).getRequestPath();
 
         assertEquals("/simple_get", requestMethod);
 
