@@ -17,18 +17,4 @@ class RequestHandler {
             throw new ReadResponseException(e);
         }
     }
-
-    private String[] splitRequestLine(String request) {
-        return request.split(" ");
-    }
-
-    String getRequestMethod(String request) {
-        var splitRequest = splitRequestLine(request);
-        return splitRequest[0];
-    }
-
-    String getRequestPath(String request) {
-        var splitRequest = splitRequestLine(request);
-        return splitRequest[1];
-    }
 }

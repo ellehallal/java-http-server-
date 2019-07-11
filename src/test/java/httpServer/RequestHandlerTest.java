@@ -21,30 +21,4 @@ class RequestHandlerTest {
         assertEquals(expectedRequest, request);
 
     }
-
-    @Test
-    void returnsTheRequestMethodGet() {
-        var stringReader = new StringReader("GET / HTTP/1.1");
-        var input = new BufferedReader(stringReader);
-        var requestHandler = new RequestHandler(input);
-        var request = requestHandler.readResponse();
-
-        var requestMethod = requestHandler.getRequestMethod(request);
-
-        assertEquals("GET", requestMethod);
-
-    }
-
-    @Test
-    void returnsTheRequestPathSimpleGet() {
-        var stringReader = new StringReader("GET /simple_get HTTP/1.1");
-        var input = new BufferedReader(stringReader);
-        var requestHandler = new RequestHandler(input);
-        var request = requestHandler.readResponse();
-
-        var requestMethod = requestHandler.getRequestPath(request);
-
-        assertEquals("/simple_get", requestMethod);
-
-    }
 }
