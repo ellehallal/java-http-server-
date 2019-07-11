@@ -1,4 +1,4 @@
-package httpServer;
+package httpserver.server;
 
 import java.io.InputStream;
 import java.io.OutputStream;

@@ -1,4 +1,4 @@
-package httpServer;
+package httpserver;
 
 import java.io.BufferedReader;
 import java.io.PrintWriter;

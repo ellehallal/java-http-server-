@@ -1,8 +1,8 @@
-package httpServer;
+package httpserver.server;
 
 import java.util.concurrent.Executor;
 
-class CurrentThreadExecutor implements Executor {
+public class CurrentThreadExecutor implements Executor {
     public void execute(Runnable runnable) {
         runnable.run();
     }

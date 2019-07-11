@@ -1,4 +1,4 @@
-package httpServer;
+package httpserver.server;
 
 public class Messages {
     static String serverStartedMessage() {
@@ -13,15 +13,15 @@ public class Messages {
         return "Client disconnected";
     }
 
-    static String clientInputOutputExceptionMessage() {
+    public static String clientInputOutputExceptionMessage() {
         return "Client input/output exception ";
     }
 
-    static String clientSocketExceptionMessage() {
+    public static String clientSocketExceptionMessage() {
         return "Client socket exception ";
     }
 
-    static String readResponseExceptionMessage() {
+    public static String readResponseExceptionMessage() {
         return "Read response exception ";
     }
 }

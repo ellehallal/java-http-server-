@@ -1,4 +1,4 @@
-package httpServer;
+package httpserver;
 
 public class RequestSplitter {
     public RequestSplitter(String request) {

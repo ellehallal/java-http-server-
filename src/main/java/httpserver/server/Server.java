@@ -1,4 +1,4 @@
-package httpServer;
+package httpserver.server;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -14,7 +14,7 @@ public class Server {
         this.executor = executor;
     }
 
-    void start() {
+    public void start() {
         ConsoleWriter.println(Messages.serverStartedMessage());
         while (isServerRunning) listenForClient();
     }

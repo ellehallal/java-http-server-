@@ -1,8 +1,8 @@
-package httpServer;
+package httpserver.server;
 
 public class ConsoleWriter {
 
-    static void println(String toPrint) {
+    public static void println(String toPrint) {
         System.out.println(toPrint);
     }
 }
