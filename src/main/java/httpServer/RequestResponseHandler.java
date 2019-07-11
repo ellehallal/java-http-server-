@@ -2,6 +2,7 @@ package httpServer;
 
 import java.io.BufferedReader;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 public class RequestResponseHandler {
     private final BufferedReader input;
@@ -23,7 +24,8 @@ public class RequestResponseHandler {
         return new RequestHandler(input).readResponse();
     }
 
-    private void sendResponse(String response) {
-       new ResponseHandler(output).sendResponse(response);
+    private void sendResponse(ArrayList<String> response) {
+        response.forEach(
+                (line) -> new ResponseHandler(output).sendResponse(line));
     }
 }
