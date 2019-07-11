@@ -10,6 +10,6 @@ public class ResponseHandler {
     }
 
     public void sendResponse(String response) {
-        output.print(response);
+        output.println(response);
     }
 }
