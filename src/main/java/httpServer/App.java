@@ -10,22 +10,7 @@ public class App {
             new Server(serverSocket, executor).start();
 
         } catch (Exception e) {
-           handleException(e);
-        }
-    }
-
-    static void handleException(Exception e) {
-        if (e instanceof ClientInputOutputException) {
-            ConsoleWriter.println
-                    (Messages.clientInputOutputExceptionMessage() + e.getMessage());
-        }
-        else if (e instanceof ClientSocketException) {
-            ConsoleWriter.println
-                    (Messages.clientSocketExceptionMessage() + e.getMessage());
-        }
-        else if (e instanceof ReadResponseException) {
-            ConsoleWriter.println
-                    (Messages.readResponseExceptionMessage() + e.getMessage());
+          new ExceptionHandler(e).handleException();
         }
     }
 }
