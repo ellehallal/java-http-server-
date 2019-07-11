@@ -15,17 +15,17 @@ public class Server {
     }
 
     void start() {
-        ConsoleWriter.println("Server started");
+        ConsoleWriter.println(Messages.serverStartedMessage());
         while (isServerRunning) listenForClient();
     }
 
     void listenForClient() {
         try {
             var clientSocket = serverSocket.accept();
-            ConsoleWriter.println("Client connected");
+            ConsoleWriter.println(Messages.clientConnectedMessage());
             executor.execute(new ClientHandler(clientSocket));
 
-            ConsoleWriter.println("Client disconnected");
+            ConsoleWriter.println(Messages.clientDisconnectedMessage());
             clientSocket.close();
         } catch (IOException e) {
             throw new ClientSocketException(e);

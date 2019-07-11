@@ -16,13 +16,16 @@ public class App {
 
     static void handleException(Exception e) {
         if (e instanceof ClientInputOutputException) {
-            ConsoleWriter.println("Client input/output exception " + e.getMessage());
+            ConsoleWriter.println
+                    (Messages.clientInputOutputExceptionMessage() + e.getMessage());
         }
         else if (e instanceof ClientSocketException) {
-            ConsoleWriter.println("Client socket exception " + e.getMessage());
+            ConsoleWriter.println
+                    (Messages.clientSocketExceptionMessage() + e.getMessage());
         }
         else if (e instanceof ReadResponseException) {
-            ConsoleWriter.println("Read response exception " + e.getMessage());
+            ConsoleWriter.println
+                    (Messages.readResponseExceptionMessage() + e.getMessage());
         }
     }
 }
