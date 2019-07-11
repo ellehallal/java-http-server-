@@ -28,7 +28,7 @@ class ClientHandler implements Runnable {
             input = new BufferedReader(inputStreamReader);
             output = new PrintWriter(socket.getOutputStream(), true);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new ClientInputOutputException(e);
         }
     }
 
@@ -42,7 +42,7 @@ class ClientHandler implements Runnable {
             input.close();
             output.close();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new ClientInputOutputException(e);
         }
     }
 }
