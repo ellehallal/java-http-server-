@@ -12,7 +12,8 @@ class ServerTest {
     void returnsOutputOfServer() throws IOException {
 
         var fakeServerSocket = new FakeServerSocket();
-        var server = new Server(fakeServerSocket);
+        var executor = new CurrentThreadExecutor();
+        var server = new Server(fakeServerSocket, executor);
 
         server.listenForClient();
 
