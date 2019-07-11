@@ -2,15 +2,15 @@ package httpserver.http;
 
 public class Response {
     private String protocolVersion;
-    private String status;
+    private String statusCode;
     private String headers;
 
     public void setProtocolVersion(String protocolVersion) {
         this.protocolVersion = protocolVersion;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setStatusCode(String statusCode) {
+        this.statusCode = statusCode;
     }
 
     public void setHeaders(String headers) {
@@ -19,9 +19,9 @@ public class Response {
 
     public String getResponse() {
         if (headers == null) {
-            return protocolVersion + " " + status;
+            return protocolVersion + " " + statusCode;
         } else {
-            return protocolVersion + " " + status + "\n" + headers;
+            return protocolVersion + " " + statusCode + "\n" + headers;
         }
     }
 }

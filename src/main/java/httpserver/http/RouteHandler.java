@@ -22,14 +22,14 @@ public class RouteHandler {
     private String simpleGetResponse() {
         var response = new Response();
         response.setProtocolVersion("HTTP/1.1");
-        response.setStatus("200 OK");
+        response.setStatusCode(StatusCode.OK.getMessage());
         return response.getResponse();
     }
 
     private String methodOptionsResponse() {
         var response = new Response();
         response.setProtocolVersion("HTTP/1.1");
-        response.setStatus("200 OK");
+        response.setStatusCode(StatusCode.OK.getMessage());
         response.setHeaders("Allow: GET, HEAD, OPTIONS");
         return response.getResponse();
     }
@@ -37,7 +37,7 @@ public class RouteHandler {
     private String notFound() {
         var response = new Response();
         response.setProtocolVersion("HTTP/1.1");
-        response.setStatus("404 NOT FOUND");
+        response.setStatusCode(StatusCode.NOT_FOUND.getMessage());
         return response.getResponse();
     }
 }

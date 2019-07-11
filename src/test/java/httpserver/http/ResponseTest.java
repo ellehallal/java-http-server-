@@ -10,7 +10,7 @@ class ResponseTest {
     void getResponseWithProtocolVersionStatusAndHeaders() {
         var response = new Response();
         response.setProtocolVersion("HTTP/1.1");
-        response.setStatus("200 OK");
+        response.setStatusCode("200 OK");
         response.setHeaders("Date: a date");
 
         assertEquals("HTTP/1.1 200 OK\nDate: a date", response.getResponse());
@@ -20,7 +20,7 @@ class ResponseTest {
     void getResponseWithProtocolVersionAndStatusOnly() {
         var response = new Response();
         response.setProtocolVersion("HTTP/1.1");
-        response.setStatus("200 OK");
+        response.setStatusCode("200 OK");
 
         assertEquals("HTTP/1.1 200 OK", response.getResponse());
     }
