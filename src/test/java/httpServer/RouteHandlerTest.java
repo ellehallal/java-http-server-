@@ -27,4 +27,15 @@ class RouteHandlerTest {
 
         assertEquals(expectedOutput, response);
     }
+
+    @Test
+    void returns200StatusWithHeadersAndEmptyBodyWhenRequestMethodIsOptionsAndPathIsMethodOptions() {
+        var expectedOutput = new ArrayList<>
+                (Arrays.asList("HTTP/1.1 200 OK", "Access-Control-Allow-Headers: GET, HEAD, OPTIONS"));
+        var request = "OPTIONS /method_options HTTP/1.1";
+        var routeHandler = new RouteHandler(request);
+        var response = routeHandler.getResponse();
+
+        assertEquals(expectedOutput, response);
+    }
 }

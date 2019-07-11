@@ -14,15 +14,22 @@ public class RouteHandler {
         var requestMethod = new RequestSplitter(request).getRequestMethod();
         var requestPath = new RequestSplitter(request).getRequestPath();
 
-        if (requestMethod.equals("GET")
-                && requestPath.equals("/simple_get")) {
+        if (requestMethod.equals("GET") && requestPath.equals("/simple_get")) {
             return simpleGetResponse();
+        } else if (requestMethod.equals("OPTIONS") && requestPath.equals("/method_options")) {
+            return methodOptionsResponse();
         }
         return notFound();
     }
 
     private ArrayList<String> simpleGetResponse() {
         response.add("HTTP/1.1 200 OK");
+        return response;
+    }
+
+    private ArrayList<String> methodOptionsResponse() {
+        response.add("HTTP/1.1 200 OK");
+        response.add("Access-Control-Allow-Headers: GET, HEAD, OPTIONS");
         return response;
     }
 
