@@ -1,16 +1,13 @@
 package httpServer;
 
-import java.util.ArrayList;
-
 public class RouteHandler {
     private final String request;
-    private ArrayList<String> response = new ArrayList<>();
 
     public RouteHandler(String request) {
         this.request = request;
     }
 
-    ArrayList getResponse() {
+    String getResponse() {
         var requestMethod = new RequestSplitter(request).getRequestMethod();
         var requestPath = new RequestSplitter(request).getRequestPath();
 
@@ -22,19 +19,25 @@ public class RouteHandler {
         return notFound();
     }
 
-    private ArrayList<String> simpleGetResponse() {
-        response.add("HTTP/1.1 200 OK");
-        return response;
+    private String simpleGetResponse() {
+        var response = new Response();
+        response.setProtocolVersion("HTTP/1.1");
+        response.setStatus("200 OK");
+        return response.getResponse();
     }
 
-    private ArrayList<String> methodOptionsResponse() {
-        response.add("HTTP/1.1 200 OK");
-        response.add("Access-Control-Allow-Headers: GET, HEAD, OPTIONS");
-        return response;
+    private String methodOptionsResponse() {
+        var response = new Response();
+        response.setProtocolVersion("HTTP/1.1");
+        response.setStatus("200 OK");
+        response.setHeaders("Allow: GET, HEAD, OPTIONS");
+        return response.getResponse();
     }
 
-    private ArrayList<String> notFound() {
-        response.add("HTTP/1.1 404 NOT FOUND");
-        return response;
+    private String notFound() {
+        var response = new Response();
+        response.setProtocolVersion("HTTP/1.1");
+        response.setStatus("404 NOT FOUND");
+        return response.getResponse();
     }
 }
