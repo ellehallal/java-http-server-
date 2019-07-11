@@ -22,10 +22,10 @@ public class Server {
     void listenForClient() {
         try {
             var clientSocket = serverSocket.accept();
-            ConsoleWriter.println("open socket");
+            ConsoleWriter.println("Client connected");
             executor.execute(new ClientHandler(clientSocket));
 
-            ConsoleWriter.println("close socket");
+            ConsoleWriter.println("Client disconnected");
             clientSocket.close();
         } catch (IOException e) {
             throw new ClientSocketException(e);

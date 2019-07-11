@@ -11,12 +11,12 @@ class ResponseHandlerTest {
 
     @Test
     void outputsTheExpectedResponse() {
-        var expectedResponse = "HTTP/1.1 200 OK";
+        var expectedResponse = "HTTP/1.1 200 OK\n";
         var stringWriter = new StringWriter();
         var output = new PrintWriter(stringWriter);
         var responseHandler = new ResponseHandler(output);
 
-        responseHandler.sendResponse(expectedResponse);
+        responseHandler.sendResponse("HTTP/1.1 200 OK");
 
         assertEquals(expectedResponse, stringWriter.toString());
     }
