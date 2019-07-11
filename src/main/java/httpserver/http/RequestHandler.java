@@ -1,9 +1,9 @@
-package httpserver;
+package httpserver.http;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 
-class RequestHandler {
+public class RequestHandler {
     private final BufferedReader input;
 
     public RequestHandler(BufferedReader input) {

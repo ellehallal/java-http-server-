@@ -1,4 +1,4 @@
-package httpserver;
+package httpserver.http;
 
 import httpserver.server.ClientInputOutputException;
 import httpserver.server.ClientSocketException;

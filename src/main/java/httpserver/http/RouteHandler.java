@@ -1,4 +1,4 @@
-package httpserver;
+package httpserver.http;
 
 public class RouteHandler {
     private final String request;

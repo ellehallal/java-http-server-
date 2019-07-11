@@ -1,11 +1,11 @@
-package httpserver;
+package httpserver.http;
 
 import org.junit.jupiter.api.Test;
 
 import java.io.BufferedReader;
 import java.io.StringReader;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class RequestSplitterTest {
 
