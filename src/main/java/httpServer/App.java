@@ -1,7 +1,16 @@
 package httpServer;
 
+import java.net.ServerSocket;
+
 public class App {
-    public String hello() {
-        return "Hello world";
+    public static void main(String[] args) {
+        try {
+            var serverSocket = new ServerSocket(5000);
+            var executor = new CurrentThreadExecutor();
+            new Server(serverSocket, executor).start();
+
+        } catch (Exception e) {
+            System.out.println("Error");
+        }
     }
 }
