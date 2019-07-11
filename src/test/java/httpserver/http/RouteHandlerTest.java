@@ -27,7 +27,7 @@ class RouteHandlerTest {
 
     @Test
     void returns200StatusWithHeadersAndEmptyBodyWhenRequestMethodIsOptionsAndPathIsMethodOptions() {
-        var expectedOutput = "HTTP/1.1 200 OK\nAccess-Control-Allow-Headers: GET, HEAD, OPTIONS";
+        var expectedOutput = "HTTP/1.1 200 OK\nAllow: GET, HEAD, OPTIONS";
         var request = "OPTIONS /method_options HTTP/1.1";
         var routeHandler = new RouteHandler(request);
         var response = routeHandler.getResponse();
