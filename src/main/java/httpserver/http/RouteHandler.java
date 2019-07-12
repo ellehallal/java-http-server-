@@ -11,9 +11,11 @@ public class RouteHandler {
         var requestMethod = new RequestSplitter(request).getRequestMethod();
         var requestPath = new RequestSplitter(request).getRequestPath();
 
-        if (requestMethod.equals("GET") && requestPath.equals("/simple_get")) {
+        if (requestMethod.equals(RequestMethod.GET.toString())
+                && requestPath.equals("/simple_get")) {
             return simpleGetResponse();
-        } else if (requestMethod.equals("OPTIONS") && requestPath.equals("/method_options")) {
+        } else if (requestMethod.equals(RequestMethod.OPTIONS.toString())
+                && requestPath.equals("/method_options")) {
             return methodOptionsResponse();
         }
         return notFound();
@@ -21,14 +23,14 @@ public class RouteHandler {
 
     private String simpleGetResponse() {
         var response = new Response();
-        response.setProtocolVersion("HTTP/1.1");
+        response.setProtocolVersion(ProtocolVersion.HTTP_1_1.getVersion());
         response.setStatusCode(StatusCode.OK.getMessage());
         return response.getResponse();
     }
 
     private String methodOptionsResponse() {
         var response = new Response();
-        response.setProtocolVersion("HTTP/1.1");
+        response.setProtocolVersion(ProtocolVersion.HTTP_1_1.getVersion());
         response.setStatusCode(StatusCode.OK.getMessage());
         response.setHeaders("Allow: GET, HEAD, OPTIONS");
         return response.getResponse();
@@ -36,7 +38,7 @@ public class RouteHandler {
 
     private String notFound() {
         var response = new Response();
-        response.setProtocolVersion("HTTP/1.1");
+        response.setProtocolVersion(ProtocolVersion.HTTP_1_1.getVersion());
         response.setStatusCode(StatusCode.NOT_FOUND.getMessage());
         return response.getResponse();
     }
