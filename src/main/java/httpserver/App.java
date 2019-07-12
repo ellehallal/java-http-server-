@@ -13,7 +13,7 @@ public class App {
             new Server(serverSocket, executor).start();
 
         } catch (Exception e) {
-          new ExceptionHandler(e).handleException();
+          ExceptionHandler.handleException(e);
         }
     }
 }

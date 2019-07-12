@@ -6,14 +6,9 @@ import httpserver.server.ClientSocketException;
 import httpserver.server.ConsoleWriter;
 import httpserver.server.Messages;
 
-public class ExceptionHandler {
-    private final Exception exception;
+class ExceptionHandler {
 
-    public ExceptionHandler(Exception exception) {
-        this.exception = exception;
-    }
-
-    public void handleException() {
+    static void handleException(Exception exception) {
         if (exception instanceof ClientInputOutputException) {
             ConsoleWriter.println
                     (Messages.clientInputOutputExceptionMessage() + exception.getMessage());
