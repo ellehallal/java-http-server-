@@ -18,6 +18,9 @@ class ExceptionHandler {
         } else if (exception instanceof ReadRequestException) {
             ConsoleWriter.println
                     (Messages.readRequestExceptionMessage() + exception.getMessage());
+        } else if (exception instanceof ServerSocketException) {
+            ConsoleWriter.println
+                    (Messages.serverSocketExceptionMessage() + exception.getMessage());
         }
     }
 }

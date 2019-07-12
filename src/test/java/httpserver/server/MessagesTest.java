@@ -54,4 +54,11 @@ class MessagesTest {
 
         assertEquals("Read response exception ", message);
     }
+
+    @Test
+    void returnsServerSocketExceptionMessage() {
+        var message = Messages.serverSocketExceptionMessage();
+
+        assertEquals("Server socket exception ", message);
+    }
 }

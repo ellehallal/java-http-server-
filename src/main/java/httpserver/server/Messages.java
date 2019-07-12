@@ -28,4 +28,8 @@ public class Messages {
     public static String readRequestExceptionMessage() {
         return "Read response exception ";
     }
+
+    public static String serverSocketExceptionMessage() {
+        return "Server socket exception ";
+    }
 }
