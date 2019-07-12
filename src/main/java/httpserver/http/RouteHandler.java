@@ -23,23 +23,17 @@ public class RouteHandler {
 
     private String simpleGetResponse() {
         var response = new Response();
-        response.setProtocolVersion(ProtocolVersion.HTTP_1_1.getVersion());
-        response.setStatusCode(StatusCode.OK.getMessage());
-        return response.getResponse();
+        return response.buildResponse(ProtocolVersion.HTTP_1_1, StatusCode.OK);
     }
 
     private String methodOptionsResponse() {
         var response = new Response();
-        response.setProtocolVersion(ProtocolVersion.HTTP_1_1.getVersion());
-        response.setStatusCode(StatusCode.OK.getMessage());
-        response.setHeaders("Allow: GET, HEAD, OPTIONS");
-        return response.getResponse();
+        var header = "Allow: GET, HEAD, OPTIONS";
+        return response.buildResponse(ProtocolVersion.HTTP_1_1, StatusCode.OK, header);
     }
 
     private String notFound() {
         var response = new Response();
-        response.setProtocolVersion(ProtocolVersion.HTTP_1_1.getVersion());
-        response.setStatusCode(StatusCode.NOT_FOUND.getMessage());
-        return response.getResponse();
+        return response.buildResponse(ProtocolVersion.HTTP_1_1, StatusCode.NOT_FOUND);
     }
 }

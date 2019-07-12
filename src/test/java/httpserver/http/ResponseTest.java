@@ -9,19 +9,16 @@ class ResponseTest {
     @Test
     void getResponseWithProtocolVersionStatusAndHeaders() {
         var response = new Response();
-        response.setProtocolVersion("HTTP/1.1");
-        response.setStatusCode("200 OK");
-        response.setHeaders("Date: a date");
+        var builtResponse = response.buildResponse(ProtocolVersion.HTTP_1_1, StatusCode.OK, "Date: a date");
 
-        assertEquals("HTTP/1.1 200 OK\nDate: a date", response.getResponse());
+        assertEquals("HTTP/1.1 200 OK\nDate: a date", builtResponse);
     }
 
     @Test
     void getResponseWithProtocolVersionAndStatusOnly() {
         var response = new Response();
-        response.setProtocolVersion("HTTP/1.1");
-        response.setStatusCode("200 OK");
+        var builtResponse = response.buildResponse(ProtocolVersion.HTTP_1_1, StatusCode.OK);
 
-        assertEquals("HTTP/1.1 200 OK", response.getResponse());
+        assertEquals("HTTP/1.1 200 OK", builtResponse);
     }
 }

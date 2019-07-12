@@ -1,27 +1,32 @@
 package httpserver.http;
 
 public class Response {
-    private String protocolVersion;
-    private String statusCode;
+    private ProtocolVersion protocolVersion;
+    private StatusCode statusCode;
     private String headers;
 
-    public void setProtocolVersion(String protocolVersion) {
+    public String buildResponse(ProtocolVersion protocolVersion, StatusCode statusCode) {
+        setProtocolVersion(protocolVersion);
+        setStatusCode(statusCode);
+        return protocolVersion.getVersion() + " " + statusCode.getMessage();
+    }
+
+    public String buildResponse(ProtocolVersion protocolVersion, StatusCode statusCode, String headers) {
+        setProtocolVersion(protocolVersion);
+        setStatusCode(statusCode);
+        setHeaders(headers);
+        return protocolVersion.getVersion() + " " + statusCode.getMessage() + "\n" + headers;
+    }
+
+    private void setProtocolVersion(ProtocolVersion protocolVersion) {
         this.protocolVersion = protocolVersion;
     }
 
-    public void setStatusCode(String statusCode) {
+    private void setStatusCode(StatusCode statusCode) {
         this.statusCode = statusCode;
     }
 
-    public void setHeaders(String headers) {
+    private void setHeaders(String headers) {
         this.headers = headers;
-    }
-
-    public String getResponse() {
-        if (headers == null) {
-            return protocolVersion + " " + statusCode;
-        } else {
-            return protocolVersion + " " + statusCode + "\n" + headers;
-        }
     }
 }
