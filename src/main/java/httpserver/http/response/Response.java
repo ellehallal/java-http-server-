@@ -19,24 +19,16 @@ public class Response {
     }
 
     public String buildResponse() {
-        return protocolVersionToString()
+        return protocolVersion.getVersion()
                 + " "
-                + statusCodeToString();
+                + statusCode.getMessage();
     }
 
     public String buildResponseWithHeaders() {
-        return protocolVersionToString()
+        return protocolVersion.getVersion()
                 + " "
-                + statusCodeToString()
+                + statusCode.getMessage()
                 + "\n"
                 + headers;
-    }
-
-    private String protocolVersionToString() {
-        return protocolVersion.getVersion();
-    }
-
-    private String statusCodeToString() {
-        return statusCode.getMessage();
     }
 }
