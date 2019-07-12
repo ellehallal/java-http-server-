@@ -21,7 +21,7 @@ class ClientHandler implements Runnable {
     public void run() {
         setInputAndOutput();
         sendRequestAndSendResponse();
-        closeInputAndOutput();
+        closeConnection();
     }
 
     private void setInputAndOutput() {
@@ -38,13 +38,14 @@ class ClientHandler implements Runnable {
         new RequestResponseHandler(input, output).run();
     }
 
-
-    private void closeInputAndOutput() {
+    private void closeConnection() {
         try {
             input.close();
             output.close();
+            socket.close();
+            ConsoleWriter.println(Messages.clientDisconnectedMessage());
         } catch (IOException e) {
-            throw new ClientInputOutputException(e);
+            throw new ClientCloseConnectionException(e);
         }
     }
 }

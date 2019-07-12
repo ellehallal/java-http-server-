@@ -24,9 +24,6 @@ public class Server {
             var clientSocket = serverSocket.accept();
             ConsoleWriter.println(Messages.clientConnectedMessage());
             executor.execute(new ClientHandler(clientSocket));
-
-            ConsoleWriter.println(Messages.clientDisconnectedMessage());
-            clientSocket.close();
         } catch (IOException e) {
             throw new ClientSocketException(e);
         }

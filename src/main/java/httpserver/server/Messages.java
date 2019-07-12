@@ -21,7 +21,11 @@ public class Messages {
         return "Client socket exception ";
     }
 
-    public static String readResponseExceptionMessage() {
+    public static String clientCloseConnectionExceptionMessage() {
+        return "Client close connection exception ";
+    }
+
+    public static String readRequestExceptionMessage() {
         return "Read response exception ";
     }
 }

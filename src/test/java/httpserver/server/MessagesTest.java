@@ -42,8 +42,15 @@ class MessagesTest {
     }
 
     @Test
-    void returnsReadResponseExceptionMessage() {
-        var message = Messages.readResponseExceptionMessage();
+    void returnsClientCloseConnectionExceptionMessage() {
+        var message = Messages.clientCloseConnectionExceptionMessage();
+
+        assertEquals("Client close connection exception ", message);
+    }
+
+    @Test
+    void returnsReadRequestExceptionMessage() {
+        var message = Messages.readRequestExceptionMessage();
 
         assertEquals("Read response exception ", message);
     }
