@@ -26,18 +26,18 @@ public class RouteHandler {
     }
 
     private String simpleGetResponse() {
-        var response = new Response();
-        return response.buildResponse(ProtocolVersion.HTTP_1_1, StatusCode.OK);
+        return new Response(ProtocolVersion.HTTP_1_1, StatusCode.OK)
+                .buildResponse();
     }
 
     private String methodOptionsResponse() {
-        var response = new Response();
         var header = "Allow: GET, HEAD, OPTIONS";
-        return response.buildResponse(ProtocolVersion.HTTP_1_1, StatusCode.OK, header);
+        return new Response(ProtocolVersion.HTTP_1_1, StatusCode.OK, header)
+                .buildResponseWithHeaders();
     }
 
     private String notFound() {
-        var response = new Response();
-        return response.buildResponse(ProtocolVersion.HTTP_1_1, StatusCode.NOT_FOUND);
+        return new Response(ProtocolVersion.HTTP_1_1, StatusCode.NOT_FOUND)
+                .buildResponse();
     }
 }

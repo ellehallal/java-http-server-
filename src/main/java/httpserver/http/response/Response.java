@@ -4,32 +4,39 @@ import httpserver.http.ProtocolVersion;
 import httpserver.http.StatusCode;
 
 public class Response {
-    private ProtocolVersion protocolVersion;
-    private StatusCode statusCode;
+    private final ProtocolVersion protocolVersion;
+    private final StatusCode statusCode;
     private String headers;
 
-    public String buildResponse(ProtocolVersion protocolVersion, StatusCode statusCode) {
-        setProtocolVersion(protocolVersion);
-        setStatusCode(statusCode);
-        return protocolVersion.getVersion() + " " + statusCode.getMessage();
-    }
-
-    public String buildResponse(ProtocolVersion protocolVersion, StatusCode statusCode, String headers) {
-        setProtocolVersion(protocolVersion);
-        setStatusCode(statusCode);
-        setHeaders(headers);
-        return protocolVersion.getVersion() + " " + statusCode.getMessage() + "\n" + headers;
-    }
-
-    private void setProtocolVersion(ProtocolVersion protocolVersion) {
+    public Response(ProtocolVersion protocolVersion, StatusCode statusCode) {
         this.protocolVersion = protocolVersion;
-    }
-
-    private void setStatusCode(StatusCode statusCode) {
         this.statusCode = statusCode;
     }
 
-    private void setHeaders(String headers) {
+    public Response(ProtocolVersion protocolVersion, StatusCode statusCode, String headers) {
+        this(protocolVersion, statusCode);
         this.headers = headers;
+    }
+
+    public String buildResponse() {
+        return protocolVersionToString()
+                + " "
+                + statusCodeToString();
+    }
+
+    public String buildResponseWithHeaders() {
+        return protocolVersionToString()
+                + " "
+                + statusCodeToString()
+                + "\n"
+                + headers;
+    }
+
+    private String protocolVersionToString() {
+        return protocolVersion.getVersion();
+    }
+
+    private String statusCodeToString() {
+        return statusCode.getMessage();
     }
 }
