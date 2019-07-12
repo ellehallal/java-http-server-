@@ -14,7 +14,7 @@ public class RequestHandler {
         try {
             return input.readLine();
         } catch (IOException e) {
-            throw new ReadResponseException(e);
+            throw new ReadRequestException(e);
         }
     }
 }

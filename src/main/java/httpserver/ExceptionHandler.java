@@ -1,6 +1,6 @@
 package httpserver;
 
-import httpserver.http.request.ReadResponseException;
+import httpserver.http.request.ReadRequestException;
 import httpserver.server.ClientInputOutputException;
 import httpserver.server.ClientSocketException;
 import httpserver.server.ConsoleWriter;
@@ -20,7 +20,7 @@ public class ExceptionHandler {
         } else if (exception instanceof ClientSocketException) {
             ConsoleWriter.println
                     (Messages.clientSocketExceptionMessage() + exception.getMessage());
-        } else if (exception instanceof ReadResponseException) {
+        } else if (exception instanceof ReadRequestException) {
             ConsoleWriter.println
                     (Messages.readResponseExceptionMessage() + exception.getMessage());
         }
