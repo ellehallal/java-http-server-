@@ -1,4 +1,8 @@
-package httpserver.http;
+package httpserver.http.route;
+
+import httpserver.http.*;
+import httpserver.http.request.RequestSplitter;
+import httpserver.http.response.Response;
 
 public class RouteHandler {
     private final String request;
@@ -7,7 +11,7 @@ public class RouteHandler {
         this.request = request;
     }
 
-    String getResponse() {
+    public String getResponse() {
         var requestMethod = new RequestSplitter(request).getRequestMethod();
         var requestPath = new RequestSplitter(request).getRequestPath();
 

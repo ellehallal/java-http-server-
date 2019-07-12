@@ -1,4 +1,4 @@
-package httpserver.http;
+package httpserver.http.request;
 
 public class ReadResponseException extends RuntimeException {
 

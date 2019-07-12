@@ -1,6 +1,5 @@
 package httpserver;
 
-import httpserver.http.ExceptionHandler;
 import httpserver.server.CurrentThreadExecutor;
 import httpserver.server.Server;
 

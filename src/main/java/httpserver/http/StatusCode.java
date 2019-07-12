@@ -1,6 +1,6 @@
 package httpserver.http;
 
-enum StatusCode {
+public enum StatusCode {
     OK("200 OK"),
     NOT_FOUND("404 NOT FOUND");
 

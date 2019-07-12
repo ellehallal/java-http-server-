@@ -1,4 +1,4 @@
-package httpserver.http;
+package httpserver.http.request;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -10,7 +10,7 @@ public class RequestHandler {
         this.input = input;
     }
 
-    String readResponse() {
+    public String readResponse() {
         try {
             return input.readLine();
         } catch (IOException e) {

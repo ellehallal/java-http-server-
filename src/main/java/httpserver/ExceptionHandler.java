@@ -1,5 +1,6 @@
-package httpserver.http;
+package httpserver;
 
+import httpserver.http.request.ReadResponseException;
 import httpserver.server.ClientInputOutputException;
 import httpserver.server.ClientSocketException;
 import httpserver.server.ConsoleWriter;

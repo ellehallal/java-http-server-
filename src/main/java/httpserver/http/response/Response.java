@@ -1,4 +1,7 @@
-package httpserver.http;
+package httpserver.http.response;
+
+import httpserver.http.ProtocolVersion;
+import httpserver.http.StatusCode;
 
 public class Response {
     private ProtocolVersion protocolVersion;
