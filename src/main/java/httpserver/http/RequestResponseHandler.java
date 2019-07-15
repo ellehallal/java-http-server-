@@ -1,6 +1,6 @@
 package httpserver.http;
 
-import httpserver.http.request.RequestHandler;
+import httpserver.http.request.RequestReader;
 import httpserver.http.response.ResponseHandler;
 import httpserver.http.route.RouteHandler;
 
@@ -24,7 +24,7 @@ public class RequestResponseHandler {
     }
 
     private String receiveRequest() {
-        return new RequestHandler(input).readResponse();
+        return new RequestReader(input).read();
     }
 
     private void sendResponse(String response) {

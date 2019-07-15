@@ -3,14 +3,14 @@ package httpserver.http.request;
 import java.io.BufferedReader;
 import java.io.IOException;
 
-public class RequestHandler {
+public class RequestReader {
     private final BufferedReader input;
 
-    public RequestHandler(BufferedReader input) {
+    public RequestReader(BufferedReader input) {
         this.input = input;
     }
 
-    public String readResponse() {
+    public String read() {
         try {
             return input.readLine();
         } catch (IOException e) {

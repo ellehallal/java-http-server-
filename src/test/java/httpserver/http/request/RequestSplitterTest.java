@@ -13,8 +13,8 @@ class RequestSplitterTest {
     void returnsTheRequestMethodGet() {
         var stringReader = new StringReader("GET / HTTP/1.1");
         var input = new BufferedReader(stringReader);
-        var requestHandler = new RequestHandler(input);
-        var request = requestHandler.readResponse();
+        var requestHandler = new RequestReader(input);
+        var request = requestHandler.read();
 
         var requestMethod = new RequestSplitter(request).getRequestMethod();
 
@@ -26,8 +26,8 @@ class RequestSplitterTest {
     void returnsTheRequestPathSimpleGet() {
         var stringReader = new StringReader("GET /simple_get HTTP/1.1");
         var input = new BufferedReader(stringReader);
-        var requestHandler = new RequestHandler(input);
-        var request = requestHandler.readResponse();
+        var requestHandler = new RequestReader(input);
+        var request = requestHandler.read();
 
         var requestMethod = new RequestSplitter(request).getRequestPath();
 
