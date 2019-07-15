@@ -15,13 +15,12 @@ class ConsoleWriterTest {
         var printStream = new PrintStream(outputStream);
         var oldPrintStream = System.out;
         System.setOut(printStream);
-        var expectedOutput = "Hello\n";
 
         new ConsoleWriter().println("Hello");
 
         System.out.flush();
         System.setOut(oldPrintStream);
 
-        assertEquals(expectedOutput, outputStream.toString());
+        assertEquals("Hello\n", outputStream.toString());
     }
 }

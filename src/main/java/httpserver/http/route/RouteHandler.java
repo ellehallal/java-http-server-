@@ -1,8 +1,11 @@
 package httpserver.http.route;
 
-import httpserver.http.*;
+
+import httpserver.http.Protocol;
+import httpserver.http.RequestMethod;
+import httpserver.http.StatusCode;
 import httpserver.http.request.RequestSplitter;
-import httpserver.http.response.Response;
+import httpserver.http.response.ResponseBuilder;
 
 public class RouteHandler {
     private final String request;
@@ -12,8 +15,9 @@ public class RouteHandler {
     }
 
     public String getResponse() {
-        var requestMethod = new RequestSplitter(request).getRequestMethod();
-        var requestPath = new RequestSplitter(request).getRequestPath();
+        var requestSplitter = new RequestSplitter(request);
+        var requestMethod = requestSplitter.getRequestMethod();
+        var requestPath = requestSplitter.getRequestPath();
 
         if (requestMethod.equals(RequestMethod.GET.toString())
                 && requestPath.equals("/simple_get")) {
@@ -26,18 +30,25 @@ public class RouteHandler {
     }
 
     private String simpleGetResponse() {
-        return new Response(ProtocolVersion.HTTP_1_1, StatusCode.OK)
-                .buildResponse();
+        return new ResponseBuilder()
+                .setProtocol(Protocol.HTTP_1_1)
+                .setStatusCode(StatusCode.OK)
+                .build();
     }
 
     private String methodOptionsResponse() {
         var header = "Allow: GET, HEAD, OPTIONS";
-        return new Response(ProtocolVersion.HTTP_1_1, StatusCode.OK, header)
-                .buildResponseWithHeaders();
+        return new ResponseBuilder()
+                .setProtocol(Protocol.HTTP_1_1)
+                .setStatusCode(StatusCode.OK)
+                .setHeaders(header)
+                .build();
     }
 
     private String notFound() {
-        return new Response(ProtocolVersion.HTTP_1_1, StatusCode.NOT_FOUND)
-                .buildResponse();
+        return new ResponseBuilder()
+                .setProtocol(Protocol.HTTP_1_1)
+                .setStatusCode(StatusCode.NOT_FOUND)
+                .build();
     }
 }

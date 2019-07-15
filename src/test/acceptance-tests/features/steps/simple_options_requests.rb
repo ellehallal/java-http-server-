@@ -7,7 +7,7 @@ class Spinach::Features::SimpleOptionsRequests < Spinach::FeatureSteps
     @response = Requests.options("/method_options2")
   end
 
-  step 'my response should have status code 200' do
+  step 'my response should have statusCode code 200' do
     expect(@response.status_code).to eq 200
   end
 

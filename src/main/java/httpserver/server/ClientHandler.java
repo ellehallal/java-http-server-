@@ -43,7 +43,7 @@ class ClientHandler implements Runnable {
             input.close();
             output.close();
             socket.close();
-            ConsoleWriter.println(Messages.clientDisconnectedMessage());
+            ConsoleWriter.println(ServerMessage.CLIENT_DISCONNECTED.toString());
         } catch (IOException e) {
             throw new ClientCloseConnectionException(e);
         }

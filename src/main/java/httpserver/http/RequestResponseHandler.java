@@ -1,7 +1,7 @@
 package httpserver.http;
 
-import httpserver.http.request.RequestHandler;
-import httpserver.http.response.ResponseHandler;
+import httpserver.http.request.RequestReader;
+import httpserver.http.response.ResponseSender;
 import httpserver.http.route.RouteHandler;
 
 import java.io.BufferedReader;
@@ -24,10 +24,11 @@ public class RequestResponseHandler {
     }
 
     private String receiveRequest() {
-        return new RequestHandler(input).readResponse();
+        return RequestReader.read(input);
     }
 
     private void sendResponse(String response) {
-        new ResponseHandler(output).sendResponse(response);
+        var responseSender = new ResponseSender(output);
+        responseSender.send(response);
     }
 }

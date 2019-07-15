@@ -21,6 +21,8 @@ class ExceptionHandler {
         } else if (exception instanceof ServerSocketException) {
             ConsoleWriter.println
                     (Messages.serverSocketExceptionMessage() + exception.getMessage());
+        } else {
+            ConsoleWriter.println(exception.getMessage());
         }
     }
 }

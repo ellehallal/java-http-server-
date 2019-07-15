@@ -2,14 +2,14 @@ package httpserver.http.response;
 
 import java.io.PrintWriter;
 
-public class ResponseHandler {
+public class ResponseSender {
     private final PrintWriter output;
 
-    public ResponseHandler(PrintWriter output) {
+    public ResponseSender(PrintWriter output) {
         this.output = output;
     }
 
-    public void sendResponse(String response) {
+    public void send(String response) {
         output.println(response);
     }
 }

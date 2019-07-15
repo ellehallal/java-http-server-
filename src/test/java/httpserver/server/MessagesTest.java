@@ -7,27 +7,6 @@ import static org.junit.jupiter.api.Assertions.*;
 class MessagesTest {
 
     @Test
-    void returnsServerStartedMessage() {
-        var message = Messages.serverStartedMessage();
-
-        assertEquals("Server started", message);
-    }
-
-    @Test
-    void returnsClientConnectedMessage() {
-        var message = Messages.clientConnectedMessage();
-
-        assertEquals("Client connected", message);
-    }
-
-    @Test
-    void returnsClientDisconnectedMessage() {
-        var message = Messages.clientDisconnectedMessage();
-
-        assertEquals("Client disconnected", message);
-    }
-
-    @Test
     void returnsClientInputOutputExceptionMessage() {
         var message = Messages.clientInputOutputExceptionMessage();
 

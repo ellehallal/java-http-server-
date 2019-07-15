@@ -3,7 +3,7 @@ class Spinach::Features::ReturningANotFoundResponse < Spinach::FeatureSteps
     @response = Requests.get("/not_found_resource")
   end
 
-  step 'my response should have status code 404' do
+  step 'my response should have statusCode code 404' do
     expect(@response.status_code).to eq 404
   end
 end

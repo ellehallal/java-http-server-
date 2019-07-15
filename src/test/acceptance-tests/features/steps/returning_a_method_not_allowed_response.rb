@@ -3,7 +3,7 @@ class Spinach::Features::ReturningAMethodNotAllowedResponse < Spinach::FeatureSt
     @response = Requests.get("/get_with_body")
   end
 
-  step 'my response should have status code 405' do
+  step 'my response should have statusCode code 405' do
     expect(@response.status_code).to eq 405
   end
 

@@ -3,7 +3,7 @@ class Spinach::Features::SimplePostRequest < Spinach::FeatureSteps
     @response = Requests.post("/echo_body", "some body")
   end
 
-  step 'my response should have status code 200' do
+  step 'my response should have statusCode code 200' do
     expect(@response.status_code).to eq 200
   end
 

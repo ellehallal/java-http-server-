@@ -1,11 +1,11 @@
 package httpserver.http;
 
-public enum ProtocolVersion {
+public enum Protocol {
     HTTP_1_1("HTTP/1.1");
 
     private final String version;
 
-    ProtocolVersion(String version) {
+    Protocol(String version) {
         this.version = version;
     }
 

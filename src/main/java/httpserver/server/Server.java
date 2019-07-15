@@ -15,14 +15,14 @@ public class Server {
     }
 
     public void start() {
-        ConsoleWriter.println(Messages.serverStartedMessage());
+        ConsoleWriter.println(ServerMessage.SERVER_STARTED.toString());
         while (isServerRunning) listenForClient();
     }
 
     void listenForClient() {
         try {
             var clientSocket = serverSocket.accept();
-            ConsoleWriter.println(Messages.clientConnectedMessage());
+            ConsoleWriter.println(ServerMessage.CLIENT_CONNECTED.toString());
             executor.execute(new ClientHandler(clientSocket));
         } catch (IOException e) {
             throw new ClientSocketException(e);
