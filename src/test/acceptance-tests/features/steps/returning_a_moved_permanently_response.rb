@@ -3,7 +3,7 @@ class Spinach::Features::ReturningAMovedPermanentlyResponse < Spinach::FeatureSt
     @response = Requests.get("/redirect")
   end
 
-  step 'my response should have status code 301' do
+  step 'my response should have statusCode code 301' do
     expect(@response.status_code).to eq(301)
   end
 
