@@ -8,14 +8,14 @@ public class Response {
     private final StatusCode statusCode;
     private String headers;
 
-    public Response(Protocol protocol, StatusCode statusCode) {
+    public Response(Protocol protocol, StatusCode statusCode, String headers) {
         this.protocol = protocol;
         this.statusCode = statusCode;
+        this.headers = headers;
     }
 
-    public Response(Protocol protocol, StatusCode statusCode, String headers) {
-        this(protocol, statusCode);
-        this.headers = headers;
+    public Response(Protocol protocol, StatusCode statusCode) {
+        this(protocol, statusCode, null);
     }
 
     public String buildResponse() {
