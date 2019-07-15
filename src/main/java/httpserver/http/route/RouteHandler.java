@@ -1,6 +1,9 @@
 package httpserver.http.route;
 
-import httpserver.http.*;
+
+import httpserver.http.Protocol;
+import httpserver.http.RequestMethod;
+import httpserver.http.StatusCode;
 import httpserver.http.request.RequestSplitter;
 import httpserver.http.response.Response;
 
