@@ -2,7 +2,7 @@ package httpserver.http.route.requestmethod;
 
 import httpserver.http.StatusCode;
 
-public class OptionsResponseBuilder extends ResponseBuilder {
+public class OptionsMethodHandler extends ResponseBuilder {
 
     public String getResponse(String requestPath) {
         switch (requestPath) {

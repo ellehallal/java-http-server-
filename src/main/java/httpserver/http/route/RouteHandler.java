@@ -6,8 +6,8 @@ import httpserver.http.RequestMethod;
 import httpserver.http.StatusCode;
 import httpserver.http.request.RequestSplitter;
 import httpserver.http.response.Response;
-import httpserver.http.route.requestmethod.GetResponseBuilder;
-import httpserver.http.route.requestmethod.OptionsResponseBuilder;
+import httpserver.http.route.requestmethod.GetMethodHandler;
+import httpserver.http.route.requestmethod.OptionsMethodHandler;
 
 public class RouteHandler {
     private final String request;
@@ -25,9 +25,9 @@ public class RouteHandler {
 
     private String selectResponse(String requestMethod, String requestPath) {
         if (requestMethod.equals(RequestMethod.GET.toString())) {
-            return new GetResponseBuilder().getResponse(requestPath);
+            return new GetMethodHandler().getResponse(requestPath);
         } else if (requestMethod.equals(RequestMethod.OPTIONS.toString())) {
-            return new OptionsResponseBuilder().getResponse(requestPath);
+            return new OptionsMethodHandler().getResponse(requestPath);
         }
         return notFound();
     }
