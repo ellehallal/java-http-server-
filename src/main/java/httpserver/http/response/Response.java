@@ -1,31 +1,31 @@
 package httpserver.http.response;
 
-import httpserver.http.ProtocolVersion;
+import httpserver.http.Protocol;
 import httpserver.http.StatusCode;
 
 public class Response {
-    private final ProtocolVersion protocolVersion;
+    private final Protocol protocol;
     private final StatusCode statusCode;
     private String headers;
 
-    public Response(ProtocolVersion protocolVersion, StatusCode statusCode) {
-        this.protocolVersion = protocolVersion;
+    public Response(Protocol protocol, StatusCode statusCode) {
+        this.protocol = protocol;
         this.statusCode = statusCode;
     }
 
-    public Response(ProtocolVersion protocolVersion, StatusCode statusCode, String headers) {
-        this(protocolVersion, statusCode);
+    public Response(Protocol protocol, StatusCode statusCode, String headers) {
+        this(protocol, statusCode);
         this.headers = headers;
     }
 
     public String buildResponse() {
-        return protocolVersion.getVersion()
+        return protocol.getVersion()
                 + " "
                 + statusCode.getMessage();
     }
 
     public String buildResponseWithHeaders() {
-        return protocolVersion.getVersion()
+        return protocol.getVersion()
                 + " "
                 + statusCode.getMessage()
                 + "\n"
