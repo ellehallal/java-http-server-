@@ -12,11 +12,4 @@ public class ResponseBuilder {
                 .setHeaders(header)
                 .build();
     }
-
-    public static String buildNotFoundResponse() {
-        return new Response()
-                .setProtocol(Protocol.HTTP_1_1)
-                .setStatusCode(StatusCode.NOT_FOUND)
-                .build();
-    }
 }

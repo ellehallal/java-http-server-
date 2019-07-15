@@ -10,7 +10,7 @@ public class GetMethodHandler extends ResponseBuilder {
             case "/simple_get":
                 return ResponseBuilder.buildResponse(StatusCode.OK, null);
             default:
-                return ResponseBuilder.buildNotFoundResponse();
+                return ResponseBuilder.buildResponse(StatusCode.NOT_FOUND, null);
         }
     }
 }

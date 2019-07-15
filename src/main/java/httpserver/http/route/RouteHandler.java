@@ -2,6 +2,7 @@ package httpserver.http.route;
 
 
 import httpserver.http.RequestMethod;
+import httpserver.http.StatusCode;
 import httpserver.http.request.RequestSplitter;
 import httpserver.http.response.ResponseBuilder;
 import httpserver.http.route.requestmethod.GetMethodHandler;
@@ -27,6 +28,6 @@ public class RouteHandler {
         } else if (requestMethod.equals(RequestMethod.OPTIONS.toString())) {
             return new OptionsMethodHandler().getResponse(requestPath);
         }
-        return ResponseBuilder.buildNotFoundResponse();
+        return ResponseBuilder.buildResponse(StatusCode.NOT_FOUND, null);
     }
 }

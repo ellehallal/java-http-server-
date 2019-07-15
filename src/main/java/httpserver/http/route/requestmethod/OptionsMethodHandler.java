@@ -14,7 +14,7 @@ public class OptionsMethodHandler extends ResponseBuilder {
                 return ResponseBuilder.buildResponse
                         (StatusCode.OK, "Allow: GET, HEAD, OPTIONS, PUT, POST");
             default:
-                return ResponseBuilder.buildNotFoundResponse();
+                return ResponseBuilder.buildResponse(StatusCode.NOT_FOUND, null);
         }
     }
 }
