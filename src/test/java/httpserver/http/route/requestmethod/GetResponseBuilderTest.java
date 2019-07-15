@@ -4,10 +4,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class GetMethodHandlerTest {
+class GetResponseBuilderTest {
     @Test
     void returnsStatusCode200WhenPathIsSimpleGet() {
-        var getMethodHandler = new GetMethodHandler();
+        var getMethodHandler = new GetResponseBuilder();
         var response = getMethodHandler.getResponse("/simple_get");
 
         assertEquals("HTTP/1.1 200 OK", response);
@@ -15,7 +15,7 @@ class GetMethodHandlerTest {
 
     @Test
     void returnsStatusCode404ForOtherPaths() {
-        var getMethodHandler = new GetMethodHandler();
+        var getMethodHandler = new GetResponseBuilder();
         var response = getMethodHandler.getResponse("/simple_get_request");
 
         assertEquals("HTTP/1.1 404 NOT FOUND", response);

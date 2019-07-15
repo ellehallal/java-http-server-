@@ -5,9 +5,9 @@ import httpserver.http.Protocol;
 import httpserver.http.RequestMethod;
 import httpserver.http.StatusCode;
 import httpserver.http.request.RequestSplitter;
-import httpserver.http.response.ResponseBuilder;
-import httpserver.http.route.requestmethod.GetMethodHandler;
-import httpserver.http.route.requestmethod.OptionsMethodHandler;
+import httpserver.http.response.Response;
+import httpserver.http.route.requestmethod.GetResponseBuilder;
+import httpserver.http.route.requestmethod.OptionsResponseBuilder;
 
 public class RouteHandler {
     private final String request;
@@ -20,21 +20,20 @@ public class RouteHandler {
         var requestSplitter = new RequestSplitter(request);
         var requestMethod = requestSplitter.getRequestMethod();
         var requestPath = requestSplitter.getRequestPath();
-
         return selectResponse(requestMethod, requestPath);
     }
 
     private String selectResponse(String requestMethod, String requestPath) {
         if (requestMethod.equals(RequestMethod.GET.toString())) {
-            return new GetMethodHandler().getResponse(requestPath);
+            return new GetResponseBuilder().getResponse(requestPath);
         } else if (requestMethod.equals(RequestMethod.OPTIONS.toString())) {
-            return new OptionsMethodHandler().getResponse(requestPath);
+            return new OptionsResponseBuilder().getResponse(requestPath);
         }
         return notFound();
     }
 
     private String notFound() {
-        return new ResponseBuilder()
+        return new Response()
                 .setProtocol(Protocol.HTTP_1_1)
                 .setStatusCode(StatusCode.NOT_FOUND)
                 .build();

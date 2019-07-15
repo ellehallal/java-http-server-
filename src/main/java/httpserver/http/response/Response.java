@@ -3,22 +3,22 @@ package httpserver.http.response;
 import httpserver.http.Protocol;
 import httpserver.http.StatusCode;
 
-public class ResponseBuilder {
+public class Response {
     private Protocol protocol;
     private StatusCode statusCode;
     private String headers;
 
-    public ResponseBuilder setProtocol(Protocol protocol) {
+    public Response setProtocol(Protocol protocol) {
         this.protocol = protocol;
         return this;
     }
 
-    public ResponseBuilder setStatusCode(StatusCode statusCode) {
+    public Response setStatusCode(StatusCode statusCode) {
         this.statusCode = statusCode;
         return this;
     }
 
-    public ResponseBuilder setHeaders(String headers) {
+    public Response setHeaders(String headers) {
         this.headers = headers;
         return this;
     }

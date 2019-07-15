@@ -6,11 +6,11 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ResponseBuilderTest {
+class ResponseTest {
 
     @Test
     void returnsStringWithProtocolVersionStatusAndHeaders() {
-        var response = new ResponseBuilder()
+        var response = new Response()
                 .setProtocol(Protocol.HTTP_1_1)
                 .setStatusCode(StatusCode.OK)
                 .setHeaders("Date: a date")
@@ -21,7 +21,7 @@ class ResponseBuilderTest {
 
     @Test
     void returnsStringWithProtocolVersionAndStatus() {
-        var response = new ResponseBuilder()
+        var response = new Response()
                 .setProtocol(Protocol.HTTP_1_1)
                 .setStatusCode(StatusCode.OK)
                 .build();

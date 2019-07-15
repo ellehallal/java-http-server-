@@ -9,7 +9,7 @@ import java.io.StringWriter;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class RequestResponseBuilderSenderTest {
+class RequestResponseSenderTest {
 
     @Test
     void acceptsARequestAndOutputsTheExpectedResponse() {
