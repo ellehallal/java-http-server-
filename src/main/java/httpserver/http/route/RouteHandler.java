@@ -6,6 +6,7 @@ import httpserver.http.RequestMethod;
 import httpserver.http.StatusCode;
 import httpserver.http.request.RequestSplitter;
 import httpserver.http.response.ResponseBuilder;
+import httpserver.http.route.requestmethod.OptionsHandler;
 
 public class RouteHandler {
     private final String request;
@@ -22,9 +23,8 @@ public class RouteHandler {
         if (requestMethod.equals(RequestMethod.GET.toString())
                 && requestPath.equals("/simple_get")) {
             return simpleGetResponse();
-        } else if (requestMethod.equals(RequestMethod.OPTIONS.toString())
-                && requestPath.equals("/method_options")) {
-            return methodOptionsResponse();
+        } else if (requestMethod.equals(RequestMethod.OPTIONS.toString())) {
+            return OptionsHandler.getResponse(requestPath);
         }
         return notFound();
     }
@@ -33,15 +33,6 @@ public class RouteHandler {
         return new ResponseBuilder()
                 .setProtocol(Protocol.HTTP_1_1)
                 .setStatusCode(StatusCode.OK)
-                .build();
-    }
-
-    private String methodOptionsResponse() {
-        var header = "Allow: GET, HEAD, OPTIONS";
-        return new ResponseBuilder()
-                .setProtocol(Protocol.HTTP_1_1)
-                .setStatusCode(StatusCode.OK)
-                .setHeaders(header)
                 .build();
     }
 
