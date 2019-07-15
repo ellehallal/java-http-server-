@@ -26,9 +26,9 @@ public class RouteHandler {
 
     private String selectResponse(String requestMethod, String requestPath) {
         if (requestMethod.equals(RequestMethod.GET.toString())) {
-            return GetMethodHandler.getResponse(requestPath);
+            return new GetMethodHandler().getResponse(requestPath);
         } else if (requestMethod.equals(RequestMethod.OPTIONS.toString())) {
-            return OptionsMethodHandler.getResponse(requestPath);
+            return new OptionsMethodHandler().getResponse(requestPath);
         }
         return notFound();
     }
