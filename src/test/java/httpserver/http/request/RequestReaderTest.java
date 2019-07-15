@@ -11,13 +11,11 @@ class RequestReaderTest {
 
     @Test
     void returnsInput() {
-        var expectedRequest = "GET / HTTP/1.1";
-        var stringReader = new StringReader(expectedRequest);
+        var stringReader = new StringReader("GET / HTTP/1.1");
         var input = new BufferedReader(stringReader);
 
         var request = RequestReader.read(input);
 
-        assertEquals(expectedRequest, request);
-
+        assertEquals("GET / HTTP/1.1", request);
     }
 }
