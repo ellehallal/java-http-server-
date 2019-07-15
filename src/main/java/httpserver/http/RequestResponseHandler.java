@@ -24,7 +24,7 @@ public class RequestResponseHandler {
     }
 
     private String receiveRequest() {
-        return new RequestReader(input).read();
+        return RequestReader.read(input);
     }
 
     private void sendResponse(String response) {

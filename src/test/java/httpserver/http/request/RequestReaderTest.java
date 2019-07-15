@@ -14,9 +14,8 @@ class RequestReaderTest {
         var expectedRequest = "GET / HTTP/1.1";
         var stringReader = new StringReader(expectedRequest);
         var input = new BufferedReader(stringReader);
-        var requestHandler = new RequestReader(input);
 
-        var request = requestHandler.read();
+        var request = RequestReader.read(input);
 
         assertEquals(expectedRequest, request);
 
