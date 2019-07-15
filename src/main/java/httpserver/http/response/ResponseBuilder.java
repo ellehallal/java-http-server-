@@ -1,12 +1,11 @@
-package httpserver.http.route.requestmethod;
+package httpserver.http.response;
 
 import httpserver.http.Protocol;
 import httpserver.http.StatusCode;
-import httpserver.http.response.Response;
 
 public class ResponseBuilder {
 
-    String buildResponse(StatusCode statusCode, String header) {
+    public static String buildResponse(StatusCode statusCode, String header) {
         return new Response()
                 .setProtocol(Protocol.HTTP_1_1)
                 .setStatusCode(statusCode)
@@ -14,7 +13,7 @@ public class ResponseBuilder {
                 .build();
     }
 
-    String buildNotFoundResponse() {
+    public static String buildNotFoundResponse() {
         return new Response()
                 .setProtocol(Protocol.HTTP_1_1)
                 .setStatusCode(StatusCode.NOT_FOUND)
