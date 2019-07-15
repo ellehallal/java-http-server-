@@ -7,7 +7,7 @@ import java.io.StringWriter;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ResponseSenderTest {
+class ResponseBuilderSenderTest {
 
     @Test
     void outputsTheExpectedResponse() {
