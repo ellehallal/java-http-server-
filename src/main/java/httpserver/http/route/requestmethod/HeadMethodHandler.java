@@ -10,9 +10,9 @@ public class HeadMethodHandler extends MethodHandler {
         var requestPath = request.getRequestPath();
         switch (requestPath) {
             case "/get_with_body":
-                return buildResponseString(StatusCode.OK, null, null);
+                return getResponseString(StatusCode.OK, null, null);
             default:
-                return buildResponseString(StatusCode.NOT_FOUND, null, null);
+                return getResponseString(StatusCode.NOT_FOUND, null, null);
         }
     }
 }
