@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class HeadMethodHandlerTest {
     @Test
     void returnsStatusCode200WhenPathIsSimpleGet() {
-        var rawRequest = "HEAD /simple_get HTTP/1.1";
+        var rawRequest = "HEAD /get_with_body HTTP/1.1";
         var request = RequestFactory.build(rawRequest);
         var headMethodHandler = new HeadMethodHandler();
         var response = headMethodHandler.getResponse(request);
@@ -17,7 +17,7 @@ class HeadMethodHandlerTest {
 
     @Test
     void returnsStatusCode200WhenTheRequestPathIsNotDefined() {
-        var rawRequest = "HEAD /simple_get_request HTTP/1.1";
+        var rawRequest = "HEAD /get_with_body_please HTTP/1.1";
         var request = RequestFactory.build(rawRequest);
         var headMethodHandler = new HeadMethodHandler();
         var response = headMethodHandler.getResponse(request);

@@ -8,8 +8,9 @@ public class HeadMethodHandler {
 
     public String getResponse(Request request) {
         var requestPath = request.getRequestPath();
+
         switch (requestPath) {
-            case "/simple_get":
+            case "/get_with_body":
                 return buildResponseString(StatusCode.OK, null, null);
             default:
                 return buildResponseString(StatusCode.NOT_FOUND, null, null);
