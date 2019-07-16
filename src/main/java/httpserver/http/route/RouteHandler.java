@@ -10,15 +10,18 @@ import httpserver.http.route.requestmethod.OptionsMethodHandler;
 
 public class RouteHandler {
 
-    public static String getResponse(Request request) {
-        var requestMethod = request.getRequestMethod();
-        var requestPath = request.getRequestPath();
+    public static String getResponse(Request newRequest) {
+        var newRequestMethod = newRequest.getRequestMethod();
+        var newRequestPath = newRequest.getRequestPath();
+        var requestMethod = RequestMethod.valueOf(newRequestMethod);
 
-        if (requestMethod.equals(RequestMethod.GET.toString())) {
-            return new GetMethodHandler().getResponse(requestPath);
-        } else if (requestMethod.equals(RequestMethod.OPTIONS.toString())) {
-            return new OptionsMethodHandler().getResponse(requestPath);
+        switch (requestMethod) {
+            case GET:
+                return new GetMethodHandler().getResponse(newRequestPath);
+            case OPTIONS:
+                return new OptionsMethodHandler().getResponse(newRequestPath);
+            default:
+                return ResponseFactory.build(StatusCode.NOT_FOUND, null).toString();
         }
-        return ResponseFactory.build(StatusCode.NOT_FOUND, null).toString();
     }
 }
