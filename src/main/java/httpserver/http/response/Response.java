@@ -18,8 +18,14 @@ public class Response {
         return this;
     }
 
-    public Response setHeaders(String headers) {
-        this.headers = headers;
+    public Response setHeaders(String name, String value) {
+        if (name == null || value == null) {
+            this.headers = null;
+        } else {
+            this.headers = name
+                    + ": "
+                    + value;
+        }
         return this;
     }
 

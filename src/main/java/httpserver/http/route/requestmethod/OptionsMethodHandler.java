@@ -8,16 +8,16 @@ public class OptionsMethodHandler {
     public String getResponse(String requestPath) {
         switch (requestPath) {
             case "/method_options":
-                return buildResponseString(StatusCode.OK, "Allow: GET, HEAD, OPTIONS");
+                return buildResponseString(StatusCode.OK, "Allow",  "GET, HEAD, OPTIONS");
             case "/method_options2":
-                return buildResponseString(StatusCode.OK, "Allow: GET, HEAD, OPTIONS, PUT, POST");
+                return buildResponseString(StatusCode.OK, "Allow", "GET, HEAD, OPTIONS, PUT, POST");
             default:
-                return buildResponseString(StatusCode.NOT_FOUND, null);
+                return buildResponseString(StatusCode.NOT_FOUND, null, null);
         }
     }
 
-    private String buildResponseString(StatusCode statusCode, String header) {
-        var response = ResponseFactory.build(statusCode, header);
+    private String buildResponseString(StatusCode statusCode, String headerName, String headerValue) {
+        var response = ResponseFactory.build(statusCode, headerName, headerValue);
         return response.toString();
     }
 }

@@ -21,7 +21,7 @@ public class RouteHandler {
             case OPTIONS:
                 return new OptionsMethodHandler().getResponse(newRequestPath);
             default:
-                return ResponseFactory.build(StatusCode.NOT_FOUND, null).toString();
+                return ResponseFactory.build(StatusCode.NOT_FOUND, null, null).toString();
         }
     }
 }

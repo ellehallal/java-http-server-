@@ -8,13 +8,13 @@ public class GetMethodHandler extends ResponseFactory {
     public String getResponse(String requestPath) {
         switch (requestPath) {
             case "/simple_get":
-                return buildResponseString(StatusCode.OK, null);
+                return buildResponseString(StatusCode.OK, null, null);
             default:
-                return buildResponseString(StatusCode.NOT_FOUND, null);
+                return buildResponseString(StatusCode.NOT_FOUND, null, null);
         }
     }
-    private String buildResponseString(StatusCode statusCode, String header) {
-        var response = ResponseFactory.build(statusCode, header);
+    private String buildResponseString(StatusCode statusCode, String headerName, String headerValue) {
+        var response = ResponseFactory.build(statusCode, headerName, headerValue);
         return response.toString();
     }
 }
