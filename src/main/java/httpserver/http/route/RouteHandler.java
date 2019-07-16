@@ -4,7 +4,6 @@ package httpserver.http.route;
 import httpserver.http.RequestMethod;
 import httpserver.http.StatusCode;
 import httpserver.http.request.Request;
-import httpserver.http.request.RequestParser;
 import httpserver.http.response.ResponseFactory;
 import httpserver.http.route.requestmethod.GetMethodHandler;
 import httpserver.http.route.requestmethod.OptionsMethodHandler;
@@ -19,10 +18,7 @@ public class RouteHandler {
     public String getResponse() {
         var requestMethod = request.getRequestMethod();
         var requestPath = request.getRequestPath();
-        return selectResponse(requestMethod, requestPath);
-    }
 
-    private String selectResponse(String requestMethod, String requestPath) {
         if (requestMethod.equals(RequestMethod.GET.toString())) {
             return new GetMethodHandler().getResponse(requestPath);
         } else if (requestMethod.equals(RequestMethod.OPTIONS.toString())) {
