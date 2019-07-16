@@ -28,6 +28,6 @@ public class RouteHandler {
         } else if (requestMethod.equals(RequestMethod.OPTIONS.toString())) {
             return new OptionsMethodHandler().getResponse(requestPath);
         }
-        return ResponseBuilder.buildResponse(StatusCode.NOT_FOUND, null);
+        return ResponseBuilder.build(StatusCode.NOT_FOUND, null).toString();
     }
 }

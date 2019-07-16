@@ -8,9 +8,13 @@ public class GetMethodHandler extends ResponseBuilder {
     public String getResponse(String requestPath) {
         switch (requestPath) {
             case "/simple_get":
-                return ResponseBuilder.buildResponse(StatusCode.OK, null);
+                return buildResponseString(StatusCode.OK, null);
             default:
-                return ResponseBuilder.buildResponse(StatusCode.NOT_FOUND, null);
+                return buildResponseString(StatusCode.NOT_FOUND, null);
         }
+    }
+    private String buildResponseString(StatusCode statusCode, String header) {
+        var response = ResponseBuilder.build(statusCode, header);
+        return response.toString();
     }
 }

@@ -23,7 +23,7 @@ public class Response {
         return this;
     }
 
-    public String build() {
+    public String toString() {
         return protocol.getVersion()
                 + getStatusCode()
                 + getHeaders();

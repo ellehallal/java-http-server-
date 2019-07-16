@@ -13,19 +13,17 @@ class ResponseTest {
         var response = new Response()
                 .setProtocol(Protocol.HTTP_1_1)
                 .setStatusCode(StatusCode.OK)
-                .setHeaders("Date: a date")
-                .build();
+                .setHeaders("Date: a date");
 
-        assertEquals("HTTP/1.1 200 OK\nDate: a date", response);
+        assertEquals("HTTP/1.1 200 OK\nDate: a date", response.toString());
     }
 
     @Test
     void returnsStringWithProtocolVersionAndStatus() {
         var response = new Response()
                 .setProtocol(Protocol.HTTP_1_1)
-                .setStatusCode(StatusCode.OK)
-                .build();
+                .setStatusCode(StatusCode.OK);
 
-        assertEquals("HTTP/1.1 200 OK", response);
+        assertEquals("HTTP/1.1 200 OK", response.toString());
     }
 }
