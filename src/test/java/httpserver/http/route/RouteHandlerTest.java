@@ -11,8 +11,8 @@ class RouteHandlerTest {
         var request = new Request()
                 .setRequestMethod("GET")
                 .setRequestPath("/simple_get");
-        var routeHandler = new RouteHandler(request);
-        var response = routeHandler.getResponse();
+
+        var response = RouteHandler.getResponse(request);
 
         assertEquals("HTTP/1.1 200 OK", response);
     }
@@ -22,8 +22,8 @@ class RouteHandlerTest {
         var request = new Request()
                 .setRequestMethod("GET")
                 .setRequestPath("/some_path");
-        var routeHandler = new RouteHandler(request);
-        var response = routeHandler.getResponse();
+
+        var response = RouteHandler.getResponse(request);
 
         assertEquals("HTTP/1.1 404 NOT FOUND", response);
     }
@@ -33,8 +33,8 @@ class RouteHandlerTest {
         var request = new Request()
                 .setRequestMethod("OPTIONS")
                 .setRequestPath("/method_options");
-        var routeHandler = new RouteHandler(request);
-        var response = routeHandler.getResponse();
+
+        var response = RouteHandler.getResponse(request);
 
         assertEquals("HTTP/1.1 200 OK\nAllow: GET, HEAD, OPTIONS", response);
     }
@@ -44,8 +44,8 @@ class RouteHandlerTest {
         var request = new Request()
                 .setRequestMethod("OPTIONS")
                 .setRequestPath("/method_options2");
-        var routeHandler = new RouteHandler(request);
-        var response = routeHandler.getResponse();
+
+        var response = RouteHandler.getResponse(request);
 
         assertEquals("HTTP/1.1 200 OK\nAllow: GET, HEAD, OPTIONS, PUT, POST", response);
     }

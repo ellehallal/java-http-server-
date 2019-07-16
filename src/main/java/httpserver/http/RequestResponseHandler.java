@@ -3,7 +3,6 @@ package httpserver.http;
 import httpserver.http.request.Request;
 import httpserver.http.request.RequestFactory;
 import httpserver.http.request.RequestReader;
-import httpserver.http.response.Response;
 import httpserver.http.response.ResponseSender;
 import httpserver.http.route.RouteHandler;
 
@@ -31,8 +30,7 @@ public class RequestResponseHandler {
     }
 
     private String getResponseString(Request request) {
-        var routeHandler = new RouteHandler(request);
-        return routeHandler.getResponse();
+        return RouteHandler.getResponse(request);
     }
 
     private void sendResponse(String response) {

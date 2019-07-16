@@ -9,13 +9,8 @@ import httpserver.http.route.requestmethod.GetMethodHandler;
 import httpserver.http.route.requestmethod.OptionsMethodHandler;
 
 public class RouteHandler {
-    private final Request request;
 
-    public RouteHandler(Request request) {
-        this.request = request;
-    }
-
-    public String getResponse() {
+    public static String getResponse(Request request) {
         var requestMethod = request.getRequestMethod();
         var requestPath = request.getRequestPath();
 
