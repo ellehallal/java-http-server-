@@ -3,7 +3,7 @@ package httpserver.http.route;
 
 import httpserver.http.RequestMethod;
 import httpserver.http.StatusCode;
-import httpserver.http.request.RequestSplitter;
+import httpserver.http.request.RequestParser;
 import httpserver.http.response.ResponseFactory;
 import httpserver.http.route.requestmethod.GetMethodHandler;
 import httpserver.http.route.requestmethod.OptionsMethodHandler;
@@ -16,7 +16,7 @@ public class RouteHandler {
     }
 
     public String getResponse() {
-        var requestSplitter = new RequestSplitter(request);
+        var requestSplitter = new RequestParser(request);
         var requestMethod = requestSplitter.getRequestMethod();
         var requestPath = requestSplitter.getRequestPath();
         return selectResponse(requestMethod, requestPath);

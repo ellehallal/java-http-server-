@@ -1,7 +1,7 @@
 package httpserver.http.request;
 
-public class RequestSplitter {
-    public RequestSplitter(String request) {
+public class RequestParser {
+    public RequestParser(String request) {
         this.request = request;
     }
 
