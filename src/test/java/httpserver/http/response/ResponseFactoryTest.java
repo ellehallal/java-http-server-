@@ -5,11 +5,11 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-class ResponseBuilderTest {
+class ResponseFactoryTest {
 
     @Test
     void returnsAResponseObject() {
-        var response = ResponseBuilder.build(StatusCode.OK, "A header");
+        var response = ResponseFactory.build(StatusCode.OK, "A header");
 
         assertThat(response instanceof Response);
     }
