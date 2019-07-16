@@ -7,7 +7,7 @@ import java.io.StringReader;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class RequestSplitterTest {
+class RequestParserTest {
 
     @Test
     void returnsTheRequestMethodGet() {
@@ -15,7 +15,7 @@ class RequestSplitterTest {
         var input = new BufferedReader(stringReader);
         var request = RequestReader.read(input);
 
-        var requestMethod = new RequestSplitter(request).getRequestMethod();
+        var requestMethod = new RequestParser(request).getRequestMethod();
 
         assertEquals("GET", requestMethod);
 
@@ -27,7 +27,7 @@ class RequestSplitterTest {
         var input = new BufferedReader(stringReader);
         var request = RequestReader.read(input);
 
-        var requestMethod = new RequestSplitter(request).getRequestPath();
+        var requestMethod = new RequestParser(request).getRequestPath();
 
         assertEquals("/simple_get", requestMethod);
 

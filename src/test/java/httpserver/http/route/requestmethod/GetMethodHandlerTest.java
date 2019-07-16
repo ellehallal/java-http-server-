@@ -1,5 +1,6 @@
 package httpserver.http.route.requestmethod;
 
+import httpserver.http.request.RequestFactory;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -7,16 +8,20 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class GetMethodHandlerTest {
     @Test
     void returnsStatusCode200WhenPathIsSimpleGet() {
+        var rawRequest = "GET /simple_get HTTP/1.1";
+        var request = RequestFactory.build(rawRequest);
         var getMethodHandler = new GetMethodHandler();
-        var response = getMethodHandler.getResponse("/simple_get");
+        var response = getMethodHandler.getResponse(request);
 
         assertEquals("HTTP/1.1 200 OK", response);
     }
 
     @Test
     void returnsStatusCode404ForOtherPaths() {
+        var rawRequest = "GET /simple_get_request HTTP/1.1";
+        var request = RequestFactory.build(rawRequest);
         var getMethodHandler = new GetMethodHandler();
-        var response = getMethodHandler.getResponse("/simple_get_request");
+        var response = getMethodHandler.getResponse(request);
 
         assertEquals("HTTP/1.1 404 NOT FOUND", response);
     }

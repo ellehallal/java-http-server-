@@ -1,11 +1,11 @@
 package httpserver.http.request;
 
-public class RequestSplitter {
-    public RequestSplitter(String request) {
-        this.request = request;
-    }
+public class RequestParser {
+    private final String rawRequest;
 
-    private final String request;
+    public RequestParser(String rawRequest) {
+        this.rawRequest = rawRequest;
+    }
 
     public String getRequestMethod() {
         var splitRequest = splitRequestLine();
@@ -18,6 +18,6 @@ public class RequestSplitter {
     }
 
     private String[] splitRequestLine() {
-        return request.split(" ");
+        return rawRequest.split(" ");
     }
 }
