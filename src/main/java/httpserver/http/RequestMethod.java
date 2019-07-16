@@ -2,5 +2,6 @@ package httpserver.http;
 
 public enum RequestMethod {
     GET,
-    OPTIONS
+    OPTIONS,
+    HEAD
 }
