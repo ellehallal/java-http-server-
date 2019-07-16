@@ -1,5 +1,6 @@
 package httpserver.http.route;
 
+import httpserver.http.request.Request;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -7,7 +8,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class RouteHandlerTest {
     @Test
     void returns200StatusWithNoHeadersAndEmptyBodyWhenRequestPathIsSimpleGet() {
-        var request = "GET /simple_get HTTP/1.1";
+        var request = new Request()
+                .setRequestMethod("GET")
+                .setRequestPath("/simple_get");
         var routeHandler = new RouteHandler(request);
         var response = routeHandler.getResponse();
 
@@ -16,7 +19,9 @@ class RouteHandlerTest {
 
     @Test
     void returns404StatusWhenPathDoesNotExist() {
-        var request = "GET /some_path HTTP/1.1";
+        var request = new Request()
+                .setRequestMethod("GET")
+                .setRequestPath("/some_path");
         var routeHandler = new RouteHandler(request);
         var response = routeHandler.getResponse();
 
@@ -25,7 +30,9 @@ class RouteHandlerTest {
 
     @Test
     void returns200StatusWithHeadersAndEmptyBodyWhenRequestMethodIsOptionsAndPathIsMethodOptions() {
-        var request = "OPTIONS /method_options HTTP/1.1";
+        var request = new Request()
+                .setRequestMethod("OPTIONS")
+                .setRequestPath("/method_options");
         var routeHandler = new RouteHandler(request);
         var response = routeHandler.getResponse();
 
@@ -34,7 +41,9 @@ class RouteHandlerTest {
 
     @Test
     void returns200StatusWithHeadersAndEmptyBodyWhenRequestMethodIsOptionsAndPathIsMethodOptions2() {
-        var request = "OPTIONS /method_options2 HTTP/1.1";
+        var request = new Request()
+                .setRequestMethod("OPTIONS")
+                .setRequestPath("/method_options2");
         var routeHandler = new RouteHandler(request);
         var response = routeHandler.getResponse();
 

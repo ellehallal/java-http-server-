@@ -3,22 +3,22 @@ package httpserver.http.route;
 
 import httpserver.http.RequestMethod;
 import httpserver.http.StatusCode;
+import httpserver.http.request.Request;
 import httpserver.http.request.RequestParser;
 import httpserver.http.response.ResponseFactory;
 import httpserver.http.route.requestmethod.GetMethodHandler;
 import httpserver.http.route.requestmethod.OptionsMethodHandler;
 
 public class RouteHandler {
-    private final String request;
+    private final Request request;
 
-    public RouteHandler(String request) {
+    public RouteHandler(Request request) {
         this.request = request;
     }
 
     public String getResponse() {
-        var requestSplitter = new RequestParser(request);
-        var requestMethod = requestSplitter.getRequestMethod();
-        var requestPath = requestSplitter.getRequestPath();
+        var requestMethod = request.getRequestMethod();
+        var requestPath = request.getRequestPath();
         return selectResponse(requestMethod, requestPath);
     }
 
