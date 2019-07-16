@@ -8,15 +8,17 @@ public class Request {
         return requestMethod;
     }
 
-    public void setRequestMethod(String requestMethod) {
+    public Request setRequestMethod(String requestMethod) {
         this.requestMethod = requestMethod;
+        return this;
     }
 
     public String getRequestPath() {
         return requestPath;
     }
 
-    public void setRequestPath(String requestPath) {
+    public Request setRequestPath(String requestPath) {
         this.requestPath = requestPath;
+        return this;
     }
 }
