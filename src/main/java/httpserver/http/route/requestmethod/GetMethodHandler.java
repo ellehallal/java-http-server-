@@ -1,11 +1,14 @@
 package httpserver.http.route.requestmethod;
 
 import httpserver.http.StatusCode;
+import httpserver.http.request.Request;
 import httpserver.http.response.ResponseFactory;
 
 public class GetMethodHandler extends ResponseFactory {
 
-    public String getResponse(String requestPath) {
+    public String getResponse(Request request) {
+        var requestPath = request.getRequestPath();
+
         switch (requestPath) {
             case "/simple_get":
                 return buildResponseString(StatusCode.OK, null, null);

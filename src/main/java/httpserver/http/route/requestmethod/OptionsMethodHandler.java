@@ -1,11 +1,14 @@
 package httpserver.http.route.requestmethod;
 
 import httpserver.http.StatusCode;
+import httpserver.http.request.Request;
 import httpserver.http.response.ResponseFactory;
 
 public class OptionsMethodHandler {
 
-    public String getResponse(String requestPath) {
+    public String getResponse(Request request) {
+        var requestPath = request.getRequestPath();
+
         switch (requestPath) {
             case "/method_options":
                 return buildResponseString(StatusCode.OK, "Allow",  "GET, HEAD, OPTIONS");
