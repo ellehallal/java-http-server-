@@ -13,8 +13,8 @@ public class MethodHandlerFactory {
     }
 
     private static boolean isRequestMethodValid(String clientRequestMethod) {
-        for (RequestMethod choice : RequestMethod.values())
-            if (choice.name().equals(clientRequestMethod)) {
+        for (RequestMethod method : RequestMethod.values())
+            if (method.name().equals(clientRequestMethod)) {
                 return true;
             }
         return false;
