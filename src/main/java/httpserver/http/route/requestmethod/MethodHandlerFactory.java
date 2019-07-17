@@ -13,11 +13,7 @@ public class MethodHandlerFactory {
     }
 
     private static boolean isRequestMethodValid(String clientRequestMethod) {
-        for (RequestMethod method : RequestMethod.values())
-            if (method.name().equals(clientRequestMethod)) {
-                return true;
-            }
-        return false;
+       return RequestMethodValidator.isRequestMethodValid(clientRequestMethod);
     }
 
     private static MethodHandler selectHandlerType(String clientRequestMethod) {
