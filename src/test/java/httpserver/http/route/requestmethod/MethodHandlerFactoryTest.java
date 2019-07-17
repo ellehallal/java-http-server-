@@ -9,18 +9,28 @@ class MethodHandlerFactoryTest {
     @Test
     void returnsAnInstanceOfGetMethodHandlerWhenTheMethodIsGet() {
         var methodHandler = MethodHandlerFactory.getHandler("GET");
-        assertThat(methodHandler instanceof GetMethodHandler);
+
+        assertThat(methodHandler).isInstanceOf(GetMethodHandler.class);
     }
 
     @Test
     void returnsAnInstanceOfOptionsMethodHandlerWhenTheMethodIsOptions() {
         var methodHandler = MethodHandlerFactory.getHandler("OPTIONS");
-        assertThat(methodHandler instanceof OptionsMethodHandler);
+
+        assertThat(methodHandler).isInstanceOf(OptionsMethodHandler.class);
     }
 
     @Test
     void returnsAnInstanceOfHeadMethodHandlerWhenTheMethodIsHead() {
         var methodHandler = MethodHandlerFactory.getHandler("HEAD");
-        assertThat(methodHandler instanceof HeadMethodHandler);
+
+        assertThat(methodHandler).isInstanceOf(HeadMethodHandler.class);
+    }
+
+    @Test
+    void returnsAnInstanceOfUnknownMethodHandlerWhenTheMethodIsNotADeclaredRequestMethod() {
+        var methodHandler = MethodHandlerFactory.getHandler("PUT");
+
+        assertThat(methodHandler).isInstanceOf(UnknownMethodHandler.class);
     }
 }
