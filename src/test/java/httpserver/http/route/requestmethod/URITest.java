@@ -8,7 +8,7 @@ class URITest {
     @Test
     void returnsURIAsAString() {
         var uri = new URI()
-                .setProtocol("http://")
+                .setProtocol("http")
                 .setHostAddress("localhost")
                 .setPort(5000)
                 .setPath("/hello")
@@ -29,7 +29,7 @@ class URITest {
     @Test
     void returnsURIWithDefaultHostAddressWhenHostAddressIsNull() {
         var uri = new URI()
-                .setProtocol("http://")
+                .setProtocol("http")
                 .setPort(5000)
                 .setPath("/hello")
                 .toString();
@@ -39,7 +39,7 @@ class URITest {
     @Test
     void returnsURIAsAStringWithoutPath() {
         var uri = new URI()
-                .setProtocol("http://")
+                .setProtocol("http")
                 .setHostAddress("localhost")
                 .setPort(5000)
                 .toString();
@@ -49,7 +49,7 @@ class URITest {
     @Test
     void returnsURIAsAStringWithoutPortNumber() {
         var uri = new URI()
-                .setProtocol("http://")
+                .setProtocol("http")
                 .setHostAddress("greeting.com")
                 .setPath("/hello")
                 .toString();
