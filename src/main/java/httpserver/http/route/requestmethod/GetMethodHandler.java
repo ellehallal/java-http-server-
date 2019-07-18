@@ -12,6 +12,9 @@ public class GetMethodHandler extends MethodHandler {
                 return getResponseString(StatusCode.OK, null, null);
             case "/get_with_body":
                 return getResponseString(StatusCode.METHOD_NOT_ALLOWED, "Allow", "HEAD, OPTIONS");
+            case "/redirect":
+                return getResponseString
+                        (StatusCode.MOVED_PERMANENTLY, "Location", "http://" + getHostAddress() + ":5000/simple_get");
             default:
                 return getResponseString(StatusCode.NOT_FOUND, null, null);
         }
