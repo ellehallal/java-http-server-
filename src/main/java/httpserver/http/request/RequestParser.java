@@ -8,15 +8,15 @@ public class RequestParser {
     }
 
     public String getRequestMethod() {
-        var requestLine = splitRequest()[0];
-        var splitRequestLine = splitRequestLine(requestLine);
-        return splitRequestLine[0];
+        var splitRequestLine = splitRequestLine();
+        var requestMethod = splitRequestLine[0];
+        return requestMethod;
     }
 
     public String getRequestPath() {
-        var requestLine = splitRequest()[0];
-        var splitRequestLine = splitRequestLine(requestLine);
-        return splitRequestLine[1];
+        var splitRequestLine = splitRequestLine();
+        var requestPath = splitRequestLine[1];
+        return requestPath;
     }
 
     public String getRequestBody() {
@@ -25,10 +25,13 @@ public class RequestParser {
     }
 
     private String[] splitRequest () {
-        return rawRequest.split("\n");
+        return rawRequest.split("\r\n");
     }
 
-    private String[] splitRequestLine(String requestLine) {
+    private String[] splitRequestLine() {
+        var splitRequest = splitRequest();
+        var requestLine = splitRequest[0];
+
         return requestLine.split(" ");
     }
 }

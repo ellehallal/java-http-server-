@@ -6,18 +6,21 @@ import java.io.IOException;
 public class RequestReader {
 
     public static String read(BufferedReader input) {
-        StringBuilder response = new StringBuilder();
-        String responseLine;
+        StringBuilder request = new StringBuilder();
+        String requestLine;
 
         try {
-            while ((responseLine = input.readLine()) != null) {
-                response.append(responseLine.trim());
-                response.append("\n");
+            while ((requestLine = input.readLine()) != null) {
+                request.append(requestLine.trim());
+                request.append("\r\n");
+
+                if (requestLine.isEmpty()) {
+                    break;
+                }
             }
-            System.out.println(response.toString());
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new ReadRequestException(e);
         }
-        return response.toString();
+        return request.toString().strip();
     }
 }

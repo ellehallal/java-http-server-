@@ -16,6 +16,6 @@ class RequestReaderTest {
 
         var request = RequestReader.read(input);
 
-        assertEquals("GET / HTTP/1.1\n", request);
+        assertEquals("GET / HTTP/1.1", request);
     }
 }
