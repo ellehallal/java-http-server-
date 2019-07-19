@@ -6,10 +6,18 @@ import java.io.IOException;
 public class RequestReader {
 
     public static String read(BufferedReader input) {
+        StringBuilder response = new StringBuilder();
+        String responseLine;
+
         try {
-            return input.readLine();
+            while ((responseLine = input.readLine()) != null) {
+                response.append(responseLine.trim());
+                response.append("\n");
+            }
+            System.out.println(response.toString());
         } catch (IOException e) {
-            throw new ReadRequestException(e);
+            e.printStackTrace();
         }
+        return response.toString();
     }
 }
