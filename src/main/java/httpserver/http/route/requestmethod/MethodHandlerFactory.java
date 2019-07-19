@@ -13,7 +13,7 @@ public class MethodHandlerFactory {
     }
 
     private static boolean isRequestMethodValid(String clientRequestMethod) {
-       return RequestMethodValidator.isRequestMethodValid(clientRequestMethod);
+        return RequestMethodValidator.isRequestMethodValid(clientRequestMethod);
     }
 
     private static MethodHandler selectHandlerType(String clientRequestMethod) {
@@ -21,6 +21,8 @@ public class MethodHandlerFactory {
         switch (requestMethod) {
             case GET:
                 return new GetMethodHandler();
+            case POST:
+                return new PostMethodHandler();
             case OPTIONS:
                 return new OptionsMethodHandler();
             case HEAD:

@@ -27,6 +27,13 @@ class MethodHandlerFactoryTest {
     }
 
     @Test
+    void returnsAnInstanceOfPostMethodHandlerWhenTheMethodIsPost() {
+        var methodHandler = MethodHandlerFactory.getHandler("POST");
+
+        assertThat(methodHandler).isInstanceOf(PostMethodHandler.class);
+    }
+
+    @Test
     void returnsAnInstanceOfUnknownMethodHandlerWhenTheMethodIsNotADeclaredRequestMethod() {
         var methodHandler = MethodHandlerFactory.getHandler("PUT");
 
