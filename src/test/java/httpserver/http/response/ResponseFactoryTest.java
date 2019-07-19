@@ -9,7 +9,7 @@ class ResponseFactoryTest {
 
     @Test
     void returnsAResponseObject() {
-        var response = ResponseFactory.build(StatusCode.OK, "A header", "with a value");
+        var response = ResponseFactory.build(StatusCode.OK, "A header", "with a value", null);
 
         assertThat(response instanceof Response);
     }

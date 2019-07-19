@@ -9,15 +9,15 @@ public class GetMethodHandler extends MethodHandler {
         var requestPath = request.getRequestPath();
         switch (requestPath) {
             case "/simple_get":
-                return getResponseString(StatusCode.OK, null, null);
+                return getResponseString(StatusCode.OK, null, null, null);
             case "/get_with_body":
-                return getResponseString(StatusCode.METHOD_NOT_ALLOWED, "Allow", "HEAD, OPTIONS");
+                return getResponseString(StatusCode.METHOD_NOT_ALLOWED, "Allow", "HEAD, OPTIONS", null);
             case "/redirect":
                 return getResponseString
                         (StatusCode.MOVED_PERMANENTLY, "Location",
-                                URIFactory.build(5000, "/simple_get").toString());
+                                URIFactory.build(5000, "/simple_get").toString(), null);
             default:
-                return getResponseString(StatusCode.NOT_FOUND, null, null);
+                return getResponseString(StatusCode.NOT_FOUND, null, null, null);
         }
     }
 }

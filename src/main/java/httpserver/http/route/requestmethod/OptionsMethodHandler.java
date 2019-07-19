@@ -9,11 +9,11 @@ public class OptionsMethodHandler extends MethodHandler {
         var requestPath = request.getRequestPath();
         switch (requestPath) {
             case "/method_options":
-                return getResponseString(StatusCode.OK, "Allow", "GET, HEAD, OPTIONS");
+                return getResponseString(StatusCode.OK, "Allow", "GET, HEAD, OPTIONS", null);
             case "/method_options2":
-                return getResponseString(StatusCode.OK, "Allow", "GET, HEAD, OPTIONS, PUT, POST");
+                return getResponseString(StatusCode.OK, "Allow", "GET, HEAD, OPTIONS, PUT, POST", null);
             default:
-                return getResponseString(StatusCode.NOT_FOUND, null, null);
+                return getResponseString(StatusCode.NOT_FOUND, null, null, null);
         }
     }
 }

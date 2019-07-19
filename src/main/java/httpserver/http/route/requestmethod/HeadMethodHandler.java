@@ -11,9 +11,9 @@ public class HeadMethodHandler extends MethodHandler {
         switch (requestPath) {
             case "/simple_get":
             case "/get_with_body":
-                return getResponseString(StatusCode.OK, null, null);
+                return getResponseString(StatusCode.OK, null, null, null);
             default:
-                return getResponseString(StatusCode.NOT_FOUND, null, null);
+                return getResponseString(StatusCode.NOT_FOUND, null, null, null);
         }
     }
 }

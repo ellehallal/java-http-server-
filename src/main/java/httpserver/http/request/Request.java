@@ -3,6 +3,7 @@ package httpserver.http.request;
 public class Request {
     private String requestMethod;
     private String requestPath;
+    private String requestBody;
 
     public String getRequestMethod() {
         return requestMethod;
@@ -19,6 +20,15 @@ public class Request {
 
     public Request setRequestPath(String requestPath) {
         this.requestPath = requestPath;
+        return this;
+    }
+
+    public String getRequestBody() {
+        return requestBody;
+    }
+
+    public Request setRequestBody(String requestBody) {
+        this.requestBody = requestBody;
         return this;
     }
 }
