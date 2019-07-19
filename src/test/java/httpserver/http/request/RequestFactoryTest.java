@@ -1,5 +1,6 @@
 package httpserver.http.request;
 
+import httpserver.http.response.Response;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -12,7 +13,7 @@ class RequestFactoryTest {
         var rawRequest = "GET /hello HTTP/1.1";
         var request = RequestFactory.build(rawRequest);
 
-        assertThat(request instanceof Request);
+        assertThat(request).isInstanceOf(Request.class);
         assertEquals("GET", request.getRequestMethod());
         assertEquals("/hello", request.getRequestPath());
     }
