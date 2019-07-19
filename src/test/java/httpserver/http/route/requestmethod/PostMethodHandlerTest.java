@@ -11,7 +11,7 @@ class PostMethodHandlerTest {
 
     @Test
     void returnsStatusCode200WithHeadersAndRequestBodyWhenPathIsEchoBody() {
-        var rawRequest = "POST /echo_body HTTP/1.1";
+        var rawRequest = "POST /echo_body HTTP/1.1\r\n\r\nhello";
         var request = RequestFactory.build(rawRequest);
         var postMethodHandler = new PostMethodHandler();
         var response = postMethodHandler.getResponse(request);
@@ -20,10 +20,10 @@ class PostMethodHandlerTest {
 
     @Test
     void returnsStatusCode404ForOtherPaths() {
-        var rawRequest = "GET /simple_get_request HTTP/1.1";
+        var rawRequest = "POST /simple_get_request HTTP/1.1";
         var request = RequestFactory.build(rawRequest);
-        var getMethodHandler = new GetMethodHandler();
-        var response = getMethodHandler.getResponse(request);
+        var postMethodHandler = new PostMethodHandler();
+        var response = postMethodHandler.getResponse(request);
         assertEquals("HTTP/1.1 404 NOT FOUND" + separator, response);
     }
 }

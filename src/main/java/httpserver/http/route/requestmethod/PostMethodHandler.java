@@ -8,6 +8,7 @@ public class PostMethodHandler extends MethodHandler {
     @Override
     public String getResponse(Request request) {
         var requestPath = request.getRequestPath();
+
         switch (requestPath) {
             case "/echo_body":
                 return getResponseString(StatusCode.OK, null, null, "hello");
