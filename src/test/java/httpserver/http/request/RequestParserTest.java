@@ -33,4 +33,16 @@ class RequestParserTest {
 
     }
 
+    @Test
+    void returnsTheRequestBody() {
+        var stringReader = new StringReader("GET /simple_get HTTP/1.1\r\n\r\nHello");
+        var input = new BufferedReader(stringReader);
+        var request = RequestReader.read(input);
+
+        var requestMethod = new RequestParser(request).getRequestBody();
+
+        assertEquals("Hello", requestMethod);
+
+    }
+
 }
