@@ -6,6 +6,9 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class RouteHandlerTest {
+
+    String separator = "\r\n";
+
     @Test
     void returns200StatusWithNoHeadersAndEmptyBodyWhenRequestPathIsSimpleGet() {
         var request = new Request()
@@ -14,7 +17,7 @@ class RouteHandlerTest {
 
         var response = RouteHandler.getResponse(request);
 
-        assertEquals("HTTP/1.1 200 OK", response);
+        assertEquals("HTTP/1.1 200 OK" + separator, response);
     }
 
     @Test
@@ -25,7 +28,7 @@ class RouteHandlerTest {
 
         var response = RouteHandler.getResponse(request);
 
-        assertEquals("HTTP/1.1 404 NOT FOUND", response);
+        assertEquals("HTTP/1.1 404 NOT FOUND" + separator, response);
     }
 
     @Test
@@ -36,7 +39,11 @@ class RouteHandlerTest {
 
         var response = RouteHandler.getResponse(request);
 
-        assertEquals("HTTP/1.1 200 OK\nAllow: GET, HEAD, OPTIONS", response);
+        assertEquals("HTTP/1.1 200 OK"
+                + separator
+                + "Allow: GET, HEAD, OPTIONS"
+                + separator
+                + separator, response);
     }
 
     @Test
@@ -47,6 +54,10 @@ class RouteHandlerTest {
 
         var response = RouteHandler.getResponse(request);
 
-        assertEquals("HTTP/1.1 200 OK\nAllow: GET, HEAD, OPTIONS, PUT, POST", response);
+        assertEquals("HTTP/1.1 200 OK"
+                + separator
+                + "Allow: GET, HEAD, OPTIONS, PUT, POST"
+                + separator
+                + separator, response);
     }
 }

@@ -8,6 +8,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ResponseTest {
 
+    String separator = "\r\n";
+
     @Test
     void returnsStringWithProtocolVersionStatusAndHeaders() {
         var response = new Response()
@@ -15,7 +17,11 @@ class ResponseTest {
                 .setStatusCode(StatusCode.OK)
                 .setHeaders("Date", "a date");
 
-        assertEquals("HTTP/1.1 200 OK\nDate: a date", response.toString());
+        assertEquals("HTTP/1.1 200 OK"
+                + separator
+                + "Date: a date"
+                + separator
+                + separator, response.toString());
     }
 
     @Test
@@ -25,6 +31,6 @@ class ResponseTest {
                 .setStatusCode(StatusCode.OK)
                 .setHeaders(null, null);
 
-        assertEquals("HTTP/1.1 200 OK", response.toString());
+        assertEquals("HTTP/1.1 200 OK" + separator, response.toString());
     }
 }

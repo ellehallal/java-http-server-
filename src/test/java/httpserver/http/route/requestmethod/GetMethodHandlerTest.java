@@ -8,6 +8,8 @@ import java.net.InetAddress;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class GetMethodHandlerTest {
+    String separator = "\r\n";
+
     @Test
     void returnsStatusCode200WhenPathIsSimpleGet() {
         var rawRequest = "GET /simple_get HTTP/1.1";
@@ -15,7 +17,7 @@ class GetMethodHandlerTest {
         var getMethodHandler = new GetMethodHandler();
         var response = getMethodHandler.getResponse(request);
 
-        assertEquals("HTTP/1.1 200 OK", response);
+        assertEquals("HTTP/1.1 200 OK" + separator, response);
     }
 
     @Test
@@ -25,7 +27,11 @@ class GetMethodHandlerTest {
         var getMethodHandler = new GetMethodHandler();
         var response = getMethodHandler.getResponse(request);
 
-        assertEquals("HTTP/1.1 405 METHOD NOT ALLOWED\nAllow: HEAD, OPTIONS", response);
+        assertEquals("HTTP/1.1 405 METHOD NOT ALLOWED"
+                + separator
+                + "Allow: HEAD, OPTIONS"
+                + separator
+                + separator, response);
     }
 
     @Test
@@ -37,8 +43,11 @@ class GetMethodHandlerTest {
 
         var response = getMethodHandler.getResponse(request);
 
-        assertEquals("HTTP/1.1 301 MOVED PERMANENTLY\n"
-                + "Location: http://"+ hostAddress +":5000/simple_get", response);
+        assertEquals("HTTP/1.1 301 MOVED PERMANENTLY"
+                + separator
+                + "Location: http://"+ hostAddress +":5000/simple_get"
+                + separator
+                + separator, response);
     }
 
     @Test
@@ -48,7 +57,7 @@ class GetMethodHandlerTest {
         var getMethodHandler = new GetMethodHandler();
         var response = getMethodHandler.getResponse(request);
 
-        assertEquals("HTTP/1.1 404 NOT FOUND", response);
+        assertEquals("HTTP/1.1 404 NOT FOUND" + separator, response);
     }
 
 }
