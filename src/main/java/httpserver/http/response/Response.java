@@ -43,6 +43,6 @@ public class Response {
     }
 
     private String getHeaders() {
-        return headers != null ? headers + separator  + separator : "";
+        return headers != null ? headers + separator : "";
     }
 }

@@ -42,7 +42,6 @@ class RouteHandlerTest {
         assertEquals("HTTP/1.1 200 OK"
                 + separator
                 + "Allow: GET, HEAD, OPTIONS"
-                + separator
                 + separator, response);
     }
 
@@ -57,7 +56,6 @@ class RouteHandlerTest {
         assertEquals("HTTP/1.1 200 OK"
                 + separator
                 + "Allow: GET, HEAD, OPTIONS, PUT, POST"
-                + separator
                 + separator, response);
     }
 }

@@ -30,7 +30,6 @@ class GetMethodHandlerTest {
         assertEquals("HTTP/1.1 405 METHOD NOT ALLOWED"
                 + separator
                 + "Allow: HEAD, OPTIONS"
-                + separator
                 + separator, response);
     }
 
@@ -46,7 +45,6 @@ class GetMethodHandlerTest {
         assertEquals("HTTP/1.1 301 MOVED PERMANENTLY"
                 + separator
                 + "Location: http://"+ hostAddress +":5000/simple_get"
-                + separator
                 + separator, response);
     }
 

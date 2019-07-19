@@ -20,7 +20,6 @@ class ResponseTest {
         assertEquals("HTTP/1.1 200 OK"
                 + separator
                 + "Date: a date"
-                + separator
                 + separator, response.toString());
     }
 
