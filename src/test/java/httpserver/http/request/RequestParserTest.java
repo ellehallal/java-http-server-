@@ -20,9 +20,9 @@ class RequestParserTest {
     void returnsTheRequestPathSimpleGet() {
         var rawRequest = "GET /simple_get HTTP/1.1\r\n";
 
-        var requestMethod = new RequestParser(rawRequest).getRequestPath();
+        var requestPath = new RequestParser(rawRequest).getRequestPath();
 
-        assertEquals("/simple_get", requestMethod);
+        assertEquals("/simple_get", requestPath);
 
     }
 
@@ -30,10 +30,20 @@ class RequestParserTest {
     void returnsTheRequestBody() {
         var rawRequest = "POST /echo_body HTTP/1.1\r\n\r\nHello";
 
-        var requestMethod = new RequestParser(rawRequest).getRequestBody();
+        var requestBody = new RequestParser(rawRequest).getRequestBody();
 
-        assertEquals("Hello", requestMethod);
+        assertEquals("Hello", requestBody);
 
+    }
+
+    @Test
+    void returnsAnEmptyRequestBodyWhenTheRawRequestDoesNotHaveARequestBody() {
+        var rawRequest = "POST /echo_body HTTP/1.1\r\n\r\n";
+
+        var requestBody = new RequestParser(rawRequest).getRequestBody();
+        System.out.println(requestBody);
+
+        assertEquals("", requestBody);
     }
 
 }

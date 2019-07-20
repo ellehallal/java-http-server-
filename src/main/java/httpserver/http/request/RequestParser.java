@@ -2,6 +2,7 @@ package httpserver.http.request;
 
 public class RequestParser {
     private final String rawRequest;
+    private final String separator = "\r\n";
 
     public RequestParser(String rawRequest) {
         this.rawRequest = rawRequest;
@@ -20,12 +21,14 @@ public class RequestParser {
     }
 
     public String getRequestBody() {
+        if(isRequestBodyEmpty()) return "";
+
         var splitRequest = splitRequest();
         return splitRequest[splitRequest.length -1];
     }
 
     private String[] splitRequest () {
-        return rawRequest.split("\r\n");
+        return rawRequest.split(separator);
     }
 
     private String[] splitRequestLine() {
@@ -33,5 +36,9 @@ public class RequestParser {
         var requestLine = splitRequest[0];
 
         return requestLine.split(" ");
+    }
+
+    private boolean isRequestBodyEmpty() {
+        return rawRequest.endsWith(separator);
     }
 }
