@@ -30,7 +30,7 @@ class RequestReaderTest {
     }
 
     @Test
-    void returnsInputWithRequestLineHeadersANDBODY() {
+    void returnsInputWithRequestLineHeadersAndBody() {
         var stringReader = new StringReader
                 ("POST / HTTP/1.1\r\nHost: localhost\r\n\r\nHello");
         var input = new BufferedReader(stringReader);

@@ -10,6 +10,6 @@ public class ResponseSender {
     }
 
     public void send(String response) {
-        output.println(response);
+        output.printf(response);
     }
 }

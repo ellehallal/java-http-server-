@@ -17,6 +17,6 @@ class ResponseSenderTest {
 
         responseHandler.send("HTTP/1.1 200 OK");
 
-        assertEquals("HTTP/1.1 200 OK\n", stringWriter.toString());
+        assertEquals("HTTP/1.1 200 OK", stringWriter.toString());
     }
 }
