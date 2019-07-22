@@ -23,4 +23,9 @@ public class URIFactory {
                 .setPort(port)
                 .setPath(path);
     }
+
+    public static URI build(String path) {
+        return new URI()
+                .setPath(path);
+    }
 }
