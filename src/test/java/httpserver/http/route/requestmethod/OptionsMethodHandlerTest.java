@@ -14,12 +14,13 @@ class OptionsMethodHandlerTest {
         var rawRequest = "OPTIONS /method_options HTTP/1.1";
         var request = RequestFactory.build(rawRequest);
         var optionsMethodHandler = new OptionsMethodHandler();
+
         var response = optionsMethodHandler.getResponse(request);
 
         assertEquals("HTTP/1.1 200 OK"
                 + separator
                 + "Allow: GET, HEAD, OPTIONS"
-                + separator, response);
+                + separator, response.toString());
     }
 
     @Test
@@ -32,7 +33,7 @@ class OptionsMethodHandlerTest {
         assertEquals("HTTP/1.1 200 OK"
                 + separator
                 + "Allow: GET, HEAD, OPTIONS, PUT, POST"
-                + separator, response);
+                + separator, response.toString());
     }
 
     @Test
@@ -42,6 +43,6 @@ class OptionsMethodHandlerTest {
         var optionsMethodHandler = new OptionsMethodHandler();
         var response = optionsMethodHandler.getResponse(request);
 
-        assertEquals("HTTP/1.1 404 NOT FOUND" + separator, response);
+        assertEquals("HTTP/1.1 404 NOT FOUND" + separator, response.toString());
     }
 }

@@ -17,7 +17,7 @@ class RouteHandlerTest {
 
         var response = RouteHandler.getResponse(request);
 
-        assertEquals("HTTP/1.1 200 OK" + separator, response);
+        assertEquals("HTTP/1.1 200 OK" + separator, response.toString());
     }
 
     @Test
@@ -28,7 +28,7 @@ class RouteHandlerTest {
 
         var response = RouteHandler.getResponse(request);
 
-        assertEquals("HTTP/1.1 404 NOT FOUND" + separator, response);
+        assertEquals("HTTP/1.1 404 NOT FOUND" + separator, response.toString());
     }
 
     @Test
@@ -42,7 +42,7 @@ class RouteHandlerTest {
         assertEquals("HTTP/1.1 200 OK"
                 + separator
                 + "Allow: GET, HEAD, OPTIONS"
-                + separator, response);
+                + separator, response.toString());
     }
 
     @Test
@@ -56,6 +56,6 @@ class RouteHandlerTest {
         assertEquals("HTTP/1.1 200 OK"
                 + separator
                 + "Allow: GET, HEAD, OPTIONS, PUT, POST"
-                + separator, response);
+                + separator, response.toString());
     }
 }
