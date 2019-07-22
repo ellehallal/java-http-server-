@@ -6,6 +6,9 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class OptionsMethodHandlerTest {
+
+    String separator = "\r\n";
+
     @Test
     void returnsThreeAllowedHeadersWhenRequestPathIsMethodOptions() {
         var rawRequest = "OPTIONS /method_options HTTP/1.1";
@@ -13,7 +16,10 @@ class OptionsMethodHandlerTest {
         var optionsMethodHandler = new OptionsMethodHandler();
         var response = optionsMethodHandler.getResponse(request);
 
-        assertEquals("HTTP/1.1 200 OK\nAllow: GET, HEAD, OPTIONS", response);
+        assertEquals("HTTP/1.1 200 OK"
+                + separator
+                + "Allow: GET, HEAD, OPTIONS"
+                + separator, response);
     }
 
     @Test
@@ -23,7 +29,10 @@ class OptionsMethodHandlerTest {
         var optionsMethodHandler = new OptionsMethodHandler();
         var response = optionsMethodHandler.getResponse(request);
 
-        assertEquals("HTTP/1.1 200 OK\nAllow: GET, HEAD, OPTIONS, PUT, POST", response);
+        assertEquals("HTTP/1.1 200 OK"
+                + separator
+                + "Allow: GET, HEAD, OPTIONS, PUT, POST"
+                + separator, response);
     }
 
     @Test
@@ -33,6 +42,6 @@ class OptionsMethodHandlerTest {
         var optionsMethodHandler = new OptionsMethodHandler();
         var response = optionsMethodHandler.getResponse(request);
 
-        assertEquals("HTTP/1.1 404 NOT FOUND", response);
+        assertEquals("HTTP/1.1 404 NOT FOUND" + separator, response);
     }
 }

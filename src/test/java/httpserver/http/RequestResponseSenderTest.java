@@ -16,14 +16,12 @@ class RequestResponseSenderTest {
         var clientRequest = "GET /simple_get HTTP/1.1";
         var stringReader = new StringReader(clientRequest);
         var input = new BufferedReader(stringReader);
-        var expectedResponse = "HTTP/1.1 200 OK\n";
         var stringWriter = new StringWriter();
         var output = new PrintWriter(stringWriter);
         var requestResponseHandler = new RequestResponseHandler(input, output);
 
         requestResponseHandler.run();
 
-        assertEquals(expectedResponse, stringWriter.toString());
-
+        assertEquals("HTTP/1.1 200 OK\r\n\n", stringWriter.toString());
     }
 }

@@ -7,6 +7,8 @@ public class Response {
     private Protocol protocol;
     private StatusCode statusCode;
     private String headers;
+    private String body = "";
+    private final String separator = "\r\n";
 
     public Response setProtocol(Protocol protocol) {
         this.protocol = protocol;
@@ -32,14 +34,15 @@ public class Response {
     public String toString() {
         return protocol.getVersion()
                 + getStatusCode()
-                + getHeaders();
-    }
-
-    private String getHeaders() {
-        return headers != null ? "\n" + headers : "";
+                + getHeaders()
+                + body;
     }
 
     private String getStatusCode() {
-        return " " + statusCode.getMessage();
+        return " " + statusCode.getMessage() + separator;
+    }
+
+    private String getHeaders() {
+        return headers != null ? headers + separator : "";
     }
 }
