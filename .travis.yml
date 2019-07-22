@@ -1,11 +1,14 @@
 language: java
 jdk: openjdk11
 sudo: false
+env:
+  - PORT=5000
 script:
   - mvn test -B
-  - java -jar target/http-server-1.0-SNAPSHOT.jar &
+  - java -Dserver.port=$PORT $JAVA_OPTS -jar target/http-server-1.0-SNAPSHOT.jar &
   - cd src/test/acceptance-tests
   - bundle install
   - bundle exec spinach
   - kill %1
   - cd /
+
