@@ -1,4 +1,4 @@
-package httpserver.http;
+package httpserver.server;
 
 import httpserver.http.request.Request;
 import httpserver.http.request.RequestFactory;

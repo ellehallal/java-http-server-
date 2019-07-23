@@ -1,6 +1,7 @@
 package httpserver.http;
 
 import httpserver.http.response.Response;
+import httpserver.server.ResponseParser;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 

@@ -1,7 +1,5 @@
 package httpserver.server;
 
-import httpserver.http.RequestResponseHandler;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
