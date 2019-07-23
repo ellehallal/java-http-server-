@@ -25,7 +25,7 @@ public class RequestResponseHandler {
     }
 
     private Request getRequest() {
-        var rawRequest = RequestReader.read(input);
+        var rawRequest = new RequestReader(input).read();
         return RequestFactory.build(rawRequest);
     }
 

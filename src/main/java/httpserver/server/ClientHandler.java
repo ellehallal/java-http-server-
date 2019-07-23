@@ -26,7 +26,7 @@ class ClientHandler implements Runnable {
 
     private void setInputAndOutput() {
         try {
-            var inputStreamReader = new InputStreamReader(socket.getInputStream());
+            var inputStreamReader = new InputStreamReader(socket.getInputStream(), "utf-8");
             input = new BufferedReader(inputStreamReader);
             output = new PrintWriter(socket.getOutputStream(), true);
         } catch (IOException e) {

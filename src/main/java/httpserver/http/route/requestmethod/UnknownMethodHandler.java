@@ -7,6 +7,6 @@ public class UnknownMethodHandler extends MethodHandler {
 
     @Override
     public String getResponse(Request request) {
-       return getResponseString(StatusCode.METHOD_NOT_ALLOWED, null, null);
+       return getResponseString(StatusCode.METHOD_NOT_ALLOWED, null, null, null);
     }
 }

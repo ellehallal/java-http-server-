@@ -7,8 +7,8 @@ import httpserver.http.response.ResponseFactory;
 public abstract class MethodHandler {
     public abstract String getResponse(Request request);
 
-    String getResponseString(StatusCode statusCode, String headerName, String headerValue) {
-        var response = ResponseFactory.build(statusCode, headerName, headerValue);
+    String getResponseString(StatusCode statusCode, String headerName, String headerValue, String body) {
+        var response = ResponseFactory.build(statusCode, headerName, headerValue, body);
         return response.toString();
     }
 }

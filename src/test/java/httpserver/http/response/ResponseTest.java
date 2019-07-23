@@ -32,4 +32,20 @@ class ResponseTest {
 
         assertEquals("HTTP/1.1 200 OK" + separator, response.toString());
     }
+
+    @Test
+    void returnsStringContainingRequestBody() {
+        var response = new Response()
+                .setProtocol(Protocol.HTTP_1_1)
+                .setStatusCode(StatusCode.OK)
+                .setHeaders("Date", "a date")
+                .setBody("hello");
+
+        assertEquals("HTTP/1.1 200 OK"
+                + separator
+                + "Date: a date"
+                + separator
+                + separator
+                + "hello", response.toString());
+    }
 }
