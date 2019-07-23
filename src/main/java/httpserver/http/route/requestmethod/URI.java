@@ -6,7 +6,7 @@ public class URI {
     private String protocol = "http";
     private String hostAddress
             = InetAddress.getLoopbackAddress().getHostAddress();
-    private Integer port;
+    private int port = Integer.parseInt(System.getenv("PORT"));
     private String path;
 
     public URI setProtocol(String protocol) {
@@ -41,7 +41,7 @@ public class URI {
     }
 
     private String getPort() {
-        return port == null ? "" : ":" + port;
+        return ":" + port;
     }
 
     private String getPath() {

@@ -14,6 +14,6 @@ class UnknownMethodHandlerTest {
         var request = RequestFactory.build(rawRequest);
         var unknownMethodHandler = new UnknownMethodHandler();
         var response = unknownMethodHandler.getResponse(request);
-        assertEquals("HTTP/1.1 405 METHOD NOT ALLOWED" + separator, response);
+        assertEquals("HTTP/1.1 405 METHOD NOT ALLOWED" + separator, response.toString());
     }
 }

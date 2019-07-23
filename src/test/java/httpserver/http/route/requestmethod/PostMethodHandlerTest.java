@@ -15,7 +15,7 @@ class PostMethodHandlerTest {
         var request = RequestFactory.build(rawRequest);
         var postMethodHandler = new PostMethodHandler();
         var response = postMethodHandler.getResponse(request);
-        assertEquals("HTTP/1.1 200 OK" + separator + separator + "hello", response);
+        assertEquals("HTTP/1.1 200 OK" + separator + separator + "hello", response.toString());
     }
 
     @Test
@@ -24,6 +24,6 @@ class PostMethodHandlerTest {
         var request = RequestFactory.build(rawRequest);
         var postMethodHandler = new PostMethodHandler();
         var response = postMethodHandler.getResponse(request);
-        assertEquals("HTTP/1.1 404 NOT FOUND" + separator, response);
+        assertEquals("HTTP/1.1 404 NOT FOUND" + separator, response.toString());
     }
 }

@@ -10,7 +10,6 @@ class URITest {
         var uri = new URI()
                 .setProtocol("http")
                 .setHostAddress("localhost")
-                .setPort(5000)
                 .setPath("/hello")
                 .toString();
         assertEquals(uri, "http://localhost:5000/hello");
@@ -47,14 +46,12 @@ class URITest {
     }
 
     @Test
-    void returnsURIAsAStringWithoutPortNumber() {
+    void returnsURIWithPortEnvValueWhenPortIsNotDefined() {
         var uri = new URI()
                 .setProtocol("http")
-                .setHostAddress("greeting.com")
+                .setHostAddress("localhost")
                 .setPath("/hello")
                 .toString();
-        assertEquals(uri, "http://greeting.com/hello");
+        assertEquals(uri, "http://localhost:5000/hello");
     }
-
-
 }

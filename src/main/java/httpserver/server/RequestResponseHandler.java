@@ -1,8 +1,9 @@
-package httpserver.http;
+package httpserver.server;
 
 import httpserver.http.request.Request;
 import httpserver.http.request.RequestFactory;
 import httpserver.http.request.RequestReader;
+import httpserver.http.response.Response;
 import httpserver.http.response.ResponseSender;
 import httpserver.http.route.RouteHandler;
 
@@ -20,7 +21,8 @@ public class RequestResponseHandler {
 
     public void run() {
         var request = getRequest();
-        var responseString = getResponseString(request);
+        var response = getResponse(request);
+        var responseString = parseResponse(response);
         sendResponse(responseString);
     }
 
@@ -29,8 +31,12 @@ public class RequestResponseHandler {
         return RequestFactory.build(rawRequest);
     }
 
-    private String getResponseString(Request request) {
+    private Response getResponse(Request request) {
         return RouteHandler.getResponse(request);
+    }
+
+    private String parseResponse(Response response) {
+        return ResponseParser.parse(response);
     }
 
     private void sendResponse(String response) {

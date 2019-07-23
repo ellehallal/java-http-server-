@@ -2,22 +2,25 @@ package httpserver.http.route.requestmethod;
 
 import httpserver.http.StatusCode;
 import httpserver.http.request.Request;
+import httpserver.http.response.Response;
+import httpserver.http.response.ResponseFactory;
 
 public class GetMethodHandler extends MethodHandler {
 
-    public String getResponse(Request request) {
+    public Response getResponse(Request request) {
         var requestPath = request.getRequestPath();
+
         switch (requestPath) {
             case "/simple_get":
-                return getResponseString(StatusCode.OK, null, null, null);
+                return ResponseFactory.build(StatusCode.OK, null, null, null);
             case "/get_with_body":
-                return getResponseString(StatusCode.METHOD_NOT_ALLOWED, "Allow", "HEAD, OPTIONS", null);
+                return ResponseFactory.build(StatusCode.METHOD_NOT_ALLOWED, "Allow", "HEAD, OPTIONS", null);
             case "/redirect":
-                return getResponseString
+                return ResponseFactory.build
                         (StatusCode.MOVED_PERMANENTLY, "Location",
-                                URIFactory.build(5000, "/simple_get").toString(), null);
+                                URIFactory.build("/simple_get").toString(), null);
             default:
-                return getResponseString(StatusCode.NOT_FOUND, null, null, null);
+                return ResponseFactory.build(StatusCode.NOT_FOUND, null, null, null);
         }
     }
 }
