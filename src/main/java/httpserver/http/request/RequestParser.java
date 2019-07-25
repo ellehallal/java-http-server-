@@ -1,23 +1,20 @@
 package httpserver.http.request;
 
-import httpserver.http.Protocol;
-import httpserver.http.RequestMethod;
-
 public class RequestParser {
-    private String rawRequest;
+    private String clientRequestString;
     private static final String SEPARATOR = "\r\n";
 
-    public RequestParser(String rawRequest) {
-        this.rawRequest = rawRequest;
+    public RequestParser(String clientRequestString) {
+        this.clientRequestString = clientRequestString;
     }
 
     public String getRequestMethod() {
-        var splitRequestLine = validateRequestLine();
+        var splitRequestLine = splitRequestLine();
         return splitRequestLine[0];
     }
 
     public String getRequestPath() {
-        var splitRequestLine = validateRequestLine();
+        var splitRequestLine = splitRequestLine();
         return splitRequestLine[1];
     }
 
@@ -28,39 +25,23 @@ public class RequestParser {
         return splitRequest[splitRequest.length -1];
     }
 
-    private String[] splitRequest () {
-        return rawRequest.split(SEPARATOR);
+    private void validateClientRequestString() {
+        clientRequestString = RequestStringValidator.validate(clientRequestString);
     }
 
     private String[] splitRequestLine() {
+        validateClientRequestString();
         var splitRequest = splitRequest();
         var requestLine = splitRequest[0];
 
         return requestLine.split(" ");
     }
 
+    private String[] splitRequest () {
+        return clientRequestString.split(SEPARATOR);
+    }
+
     private boolean isRequestBodyEmpty() {
-        return rawRequest.endsWith(SEPARATOR);
-    }
-
-    private String[] validateRequestLine() {
-        if (isRequestEmpty()) rawRequest = invalidRequest();
-
-        return splitRequestLine();
-    }
-
-    private boolean isRequestEmpty() {
-        return rawRequest.isEmpty();
-    }
-
-    private String invalidRequest() {
-        var requestMethod = RequestMethod.INVALID.toString();
-        var path = "/";
-        var protocol = Protocol.HTTP_1_1.getVersion();
-        return requestMethod
-                + " "
-                + path
-                + " "
-                + protocol;
+        return clientRequestString.endsWith(SEPARATOR);
     }
 }
