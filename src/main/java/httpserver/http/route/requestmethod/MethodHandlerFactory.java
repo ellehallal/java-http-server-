@@ -27,6 +27,8 @@ public class MethodHandlerFactory {
                 return new OptionsMethodHandler();
             case HEAD:
                 return new HeadMethodHandler();
+            case INVALID:
+                return new InvalidMethodHandler();
             default:
                 return new UnknownMethodHandler();
         }

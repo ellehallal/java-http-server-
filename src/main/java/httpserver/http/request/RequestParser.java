@@ -1,23 +1,21 @@
 package httpserver.http.request;
 
 public class RequestParser {
-    private final String rawRequest;
-    private final String separator = "\r\n";
+    private String clientRequestString;
+    private static final String SEPARATOR = "\r\n";
 
-    public RequestParser(String rawRequest) {
-        this.rawRequest = rawRequest;
+    public RequestParser(String clientRequestString) {
+        this.clientRequestString = clientRequestString;
     }
 
     public String getRequestMethod() {
         var splitRequestLine = splitRequestLine();
-        var requestMethod = splitRequestLine[0];
-        return requestMethod;
+        return splitRequestLine[0];
     }
 
     public String getRequestPath() {
         var splitRequestLine = splitRequestLine();
-        var requestPath = splitRequestLine[1];
-        return requestPath;
+        return splitRequestLine[1];
     }
 
     public String getRequestBody() {
@@ -27,18 +25,23 @@ public class RequestParser {
         return splitRequest[splitRequest.length -1];
     }
 
-    private String[] splitRequest () {
-        return rawRequest.split(separator);
+    private void validateClientRequestString() {
+        clientRequestString = RequestStringValidator.validate(clientRequestString);
     }
 
     private String[] splitRequestLine() {
+        validateClientRequestString();
         var splitRequest = splitRequest();
         var requestLine = splitRequest[0];
 
         return requestLine.split(" ");
     }
 
+    private String[] splitRequest () {
+        return clientRequestString.split(SEPARATOR);
+    }
+
     private boolean isRequestBodyEmpty() {
-        return rawRequest.endsWith(separator);
+        return clientRequestString.endsWith(SEPARATOR);
     }
 }

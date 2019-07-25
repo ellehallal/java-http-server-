@@ -39,4 +39,11 @@ class MethodHandlerFactoryTest {
 
         assertThat(methodHandler).isInstanceOf(UnknownMethodHandler.class);
     }
+
+    @Test
+    void returnsAnInstanceOfInvalidMethodHandlerWhenTheMethodIsInvalid() {
+        var methodHandler = MethodHandlerFactory.getHandler("INVALID");
+
+        assertThat(methodHandler).isInstanceOf(InvalidMethodHandler.class);
+    }
 }
