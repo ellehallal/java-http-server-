@@ -1,23 +1,24 @@
 package httpserver.http.request;
 
+import httpserver.http.Protocol;
+import httpserver.http.RequestMethod;
+
 public class RequestParser {
-    private final String rawRequest;
-    private final String separator = "\r\n";
+    private String rawRequest;
+    private static final String SEPARATOR = "\r\n";
 
     public RequestParser(String rawRequest) {
         this.rawRequest = rawRequest;
     }
 
     public String getRequestMethod() {
-        var splitRequestLine = splitRequestLine();
-        var requestMethod = splitRequestLine[0];
-        return requestMethod;
+        var splitRequestLine = validateRequestLine();
+        return splitRequestLine[0];
     }
 
     public String getRequestPath() {
-        var splitRequestLine = splitRequestLine();
-        var requestPath = splitRequestLine[1];
-        return requestPath;
+        var splitRequestLine = validateRequestLine();
+        return splitRequestLine[1];
     }
 
     public String getRequestBody() {
@@ -28,7 +29,7 @@ public class RequestParser {
     }
 
     private String[] splitRequest () {
-        return rawRequest.split(separator);
+        return rawRequest.split(SEPARATOR);
     }
 
     private String[] splitRequestLine() {
@@ -39,6 +40,27 @@ public class RequestParser {
     }
 
     private boolean isRequestBodyEmpty() {
-        return rawRequest.endsWith(separator);
+        return rawRequest.endsWith(SEPARATOR);
+    }
+
+    private String[] validateRequestLine() {
+        if (isRequestEmpty()) rawRequest = invalidRequest();
+
+        return splitRequestLine();
+    }
+
+    private boolean isRequestEmpty() {
+        return rawRequest.isEmpty();
+    }
+
+    private String invalidRequest() {
+        var requestMethod = RequestMethod.INVALID.toString();
+        var path = "/";
+        var protocol = Protocol.HTTP_1_1.getVersion();
+        return requestMethod
+                + " "
+                + path
+                + " "
+                + protocol;
     }
 }

@@ -41,9 +41,19 @@ class RequestParserTest {
         var rawRequest = "POST /echo_body HTTP/1.1\r\n\r\n";
 
         var requestBody = new RequestParser(rawRequest).getRequestBody();
-        System.out.println(requestBody);
 
         assertEquals("", requestBody);
+    }
+
+    @Test
+    void returnsARequestLineWithTheInvalidRequestMethodIfRawRequestIsEmpty() {
+        var rawRequest = "";
+
+        var requestMethod = new RequestParser(rawRequest).getRequestMethod();
+        var requestPath = new RequestParser(rawRequest).getRequestPath();
+
+        assertEquals("INVALID", requestMethod);
+        assertEquals("/", requestPath);
     }
 
 }
