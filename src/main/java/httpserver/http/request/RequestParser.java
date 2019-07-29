@@ -1,5 +1,8 @@
 package httpserver.http.request;
 
+import java.util.Arrays;
+import java.util.HashMap;
+
 public class RequestParser {
     private String clientRequestString;
     private static final String SEPARATOR = "\r\n";
@@ -16,6 +19,22 @@ public class RequestParser {
     public String getRequestPath() {
         var splitRequestLine = splitRequestLine();
         return splitRequestLine[1];
+    }
+
+    public HashMap getRequestHeaders() {
+        var requestHeaders = new HashMap<String, String>();
+        var splitRequest = splitRequest();
+        var endOfHeadersIndex = splitRequest.length;
+
+        if(!isRequestBodyEmpty()) endOfHeadersIndex -=1;
+
+        var rawRequestHeaders = Arrays.copyOfRange(splitRequest, 1, endOfHeadersIndex);
+
+        for (String header : rawRequestHeaders) {
+            var splitHeader = header.split(": ");
+            requestHeaders.put(splitHeader[0], splitHeader[1]);
+        }
+        return requestHeaders;
     }
 
     public String getRequestBody() {
@@ -37,7 +56,7 @@ public class RequestParser {
         return requestLine.split(" ");
     }
 
-    private String[] splitRequest () {
+    private String[] splitRequest() {
         return clientRequestString.split(SEPARATOR);
     }
 

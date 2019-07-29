@@ -56,4 +56,31 @@ class RequestParserTest {
         assertEquals("/", requestPath);
     }
 
+    @Test
+    void returnsTheHeadersWhenTheBodyIsEmpty() {
+        var rawRequest = "POST /echo_body HTTP/1.1\r\nHost: localhost:5000\r\n\r\n";
+
+        var requestParser = new RequestParser(rawRequest);
+        var requestHeaders = requestParser.getRequestHeaders();
+        var requestBody = requestParser.getRequestBody();
+
+        assertEquals(1, requestHeaders.size());
+        assertEquals("localhost:5000", requestHeaders.get("Host"));
+        assertEquals("", requestBody);
+    }
+
+    @Test
+    void returnsTheHeadersWhenTheBodyIsNotEmpty() {
+        var rawRequest = "POST /echo_body HTTP/1.1\r\nHost: localhost:5000\r\nHere is the body";
+        var requestParser = new RequestParser(rawRequest);
+        var requestHeaders = requestParser.getRequestHeaders();
+        var requestBody = requestParser.getRequestBody();
+
+        assertEquals(1, requestHeaders.size());
+        assertEquals("localhost:5000", requestHeaders.get("Host"));
+        assertEquals("Here is the body", requestBody);
+    }
+
+
+
 }
