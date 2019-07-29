@@ -52,8 +52,6 @@ public class Response {
     }
 
     private String formatBody() {
-        return body != null ? separator + body : "";
+        return body != null ? separator + body : separator;
     }
-
-
 }
