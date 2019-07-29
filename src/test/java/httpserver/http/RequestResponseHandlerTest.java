@@ -21,6 +21,6 @@ class RequestResponseHandlerTest {
         var requestResponseHandler = new RequestResponseHandler(input, output);
         requestResponseHandler.run();
 
-        assertEquals("HTTP/1.1 404 NOT FOUND\r\n", outputStream.toString());
+        assertEquals("HTTP/1.1 404 NOT FOUND\r\n\r\n", outputStream.toString());
     }
 }

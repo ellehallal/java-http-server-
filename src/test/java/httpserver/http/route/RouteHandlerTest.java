@@ -7,8 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class RouteHandlerTest {
 
-    String separator = "\r\n";
-
     @Test
     void returns200StatusWithNoHeadersAndEmptyBodyWhenRequestPathIsSimpleGet() {
         var request = new Request()
@@ -17,7 +15,7 @@ class RouteHandlerTest {
 
         var response = RouteHandler.getResponse(request);
 
-        assertEquals("HTTP/1.1 200 OK" + separator, response.toString());
+        assertEquals("HTTP/1.1 200 OK\r\n\r\n", response.toString());
     }
 
     @Test
@@ -28,7 +26,7 @@ class RouteHandlerTest {
 
         var response = RouteHandler.getResponse(request);
 
-        assertEquals("HTTP/1.1 404 NOT FOUND" + separator, response.toString());
+        assertEquals("HTTP/1.1 404 NOT FOUND\r\n\r\n", response.toString());
     }
 
     @Test
@@ -39,10 +37,8 @@ class RouteHandlerTest {
 
         var response = RouteHandler.getResponse(request);
 
-        assertEquals("HTTP/1.1 200 OK"
-                + separator
-                + "Allow: GET, HEAD, OPTIONS"
-                + separator, response.toString());
+        assertEquals("HTTP/1.1 200 OK\r\n"
+                + "Allow: GET, HEAD, OPTIONS\r\n\r\n", response.toString());
     }
 
     @Test
@@ -53,9 +49,7 @@ class RouteHandlerTest {
 
         var response = RouteHandler.getResponse(request);
 
-        assertEquals("HTTP/1.1 200 OK"
-                + separator
-                + "Allow: GET, HEAD, OPTIONS, PUT, POST"
-                + separator, response.toString());
+        assertEquals("HTTP/1.1 200 OK\r\n"
+                + "Allow: GET, HEAD, OPTIONS, PUT, POST\r\n\r\n", response.toString());
     }
 }

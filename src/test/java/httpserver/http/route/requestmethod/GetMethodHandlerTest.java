@@ -17,7 +17,7 @@ class GetMethodHandlerTest {
         var getMethodHandler = new GetMethodHandler();
         var response = getMethodHandler.getResponse(request);
 
-        assertEquals("HTTP/1.1 200 OK" + separator, response.toString());
+        assertEquals("HTTP/1.1 200 OK\r\n\r\n", response.toString());
     }
 
     @Test
@@ -27,10 +27,8 @@ class GetMethodHandlerTest {
         var getMethodHandler = new GetMethodHandler();
         var response = getMethodHandler.getResponse(request);
 
-        assertEquals("HTTP/1.1 405 METHOD NOT ALLOWED"
-                + separator
-                + "Allow: HEAD, OPTIONS"
-                + separator, response.toString());
+        assertEquals("HTTP/1.1 405 METHOD NOT ALLOWED\r\n"
+                + "Allow: HEAD, OPTIONS\r\n\r\n", response.toString());
     }
 
     @Test
@@ -42,10 +40,8 @@ class GetMethodHandlerTest {
 
         var response = getMethodHandler.getResponse(request);
 
-        assertEquals("HTTP/1.1 301 MOVED PERMANENTLY"
-                + separator
-                + "Location: http://"+ hostAddress +":5000/simple_get"
-                + separator, response.toString());
+        assertEquals("HTTP/1.1 301 MOVED PERMANENTLY\r\n"
+                + "Location: http://"+ hostAddress +":5000/simple_get\r\n\r\n", response.toString());
     }
 
     @Test
@@ -55,7 +51,7 @@ class GetMethodHandlerTest {
         var getMethodHandler = new GetMethodHandler();
         var response = getMethodHandler.getResponse(request);
 
-        assertEquals("HTTP/1.1 404 NOT FOUND" + separator, response.toString());
+        assertEquals("HTTP/1.1 404 NOT FOUND\r\n\r\n", response.toString());
     }
 
 }
