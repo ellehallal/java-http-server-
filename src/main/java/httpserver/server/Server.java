@@ -2,30 +2,35 @@ package httpserver.server;
 
 import java.io.IOException;
 import java.net.ServerSocket;
-import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 public class Server {
-    private final ServerSocket serverSocket;
-    private final Executor executor;
-    private boolean isServerRunning = true;
 
-    public Server(ServerSocket serverSocket, Executor executor) {
-        this.serverSocket = serverSocket;
-        this.executor = executor;
+    private final int port;
+
+    public Server(int port) {
+        this.port = port;
     }
 
     public void start() {
-        ConsoleWriter.println(ServerMessage.SERVER_STARTED.toString());
-        while (isServerRunning) listenForClient();
+        try {
+            var serverSocket = createServerSocket();
+            startServer(serverSocket);
+        } catch (Exception e) {
+            ExceptionHandler.handleException(e);
+        }
     }
 
-    void listenForClient() {
+    private ServerSocket createServerSocket() {
         try {
-            var clientSocket = serverSocket.accept();
-            ConsoleWriter.println(ServerMessage.CLIENT_CONNECTED.toString());
-            executor.execute(new ClientHandler(clientSocket));
+            return new ServerSocket(port);
         } catch (IOException e) {
-            throw new ClientSocketException(e);
+            throw new ServerSocketException(e);
         }
+    }
+
+    private void startServer(ServerSocket serverSocket) {
+        var executor = Executors.newCachedThreadPool();
+        new ServerRunner(serverSocket, executor).start();
     }
 }

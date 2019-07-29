@@ -1,11 +1,11 @@
-package httpserver;
+package httpserver.server;
 
 import httpserver.http.request.ReadRequestException;
-import httpserver.server.*;
 
-class ExceptionHandler {
 
-    static void handleException(Exception exception) {
+public class ExceptionHandler {
+
+    public static void handleException(Exception exception) {
         if (exception instanceof ClientInputOutputException) {
             ConsoleWriter.println
                     (Messages.clientInputOutputExceptionMessage() + exception.getMessage());

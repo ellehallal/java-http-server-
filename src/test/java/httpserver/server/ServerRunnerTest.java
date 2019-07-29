@@ -6,14 +6,14 @@ import java.io.IOException;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class ServerTest {
+class ServerRunnerTest {
 
     @Test
     void returnsOutputOfServer() throws IOException {
 
         var fakeServerSocket = new FakeServerSocket();
         var executor = new CurrentThreadExecutor();
-        var server = new Server(fakeServerSocket, executor);
+        var server = new ServerRunner(fakeServerSocket, executor);
 
         server.listenForClient();
 
