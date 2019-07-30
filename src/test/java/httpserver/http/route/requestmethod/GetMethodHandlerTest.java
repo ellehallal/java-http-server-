@@ -3,8 +3,6 @@ package httpserver.http.route.requestmethod;
 import httpserver.http.request.RequestFactory;
 import org.junit.jupiter.api.Test;
 
-import java.net.InetAddress;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class GetMethodHandlerTest {
@@ -33,15 +31,14 @@ class GetMethodHandlerTest {
 
     @Test
     void returnsStatusCode301WhenTheRequestPathRedirect() {
-        var rawRequest = "GET /redirect";
+        var rawRequest = "GET /redirect HTTP/1.1\r\nHost: localhost:5000\r\n\r\n";
         var request = RequestFactory.build(rawRequest);
         var getMethodHandler = new GetMethodHandler();
-        var hostAddress = InetAddress.getLoopbackAddress().getHostAddress();
 
         var response = getMethodHandler.getResponse(request);
 
         assertEquals("HTTP/1.1 301 MOVED PERMANENTLY\r\n"
-                + "Location: http://"+ hostAddress +":5000/simple_get\r\n\r\n", response.toString());
+                + "Location: http://localhost:5000/simple_get\r\n\r\n", response.toString());
     }
 
     @Test
@@ -53,5 +50,4 @@ class GetMethodHandlerTest {
 
         assertEquals("HTTP/1.1 404 NOT FOUND\r\n\r\n", response.toString());
     }
-
 }

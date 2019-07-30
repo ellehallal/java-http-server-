@@ -1,55 +1,32 @@
 package httpserver.http.route.requestmethod;
 
+import httpserver.http.request.RequestFactory;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class URITest {
     @Test
-    void returnsURIAsAString() {
-        var uri = new URI()
-                .setProtocol("http")
-                .setHostAddress("localhost")
+    void returnsURIAsAStringWithProtocolHostPortAndPath() {
+        var rawRequest = "GET /simple_get HTTP/1.1\r\nHost: localhost:5000\r\n\r\nThis is the body";
+        var request = new RequestFactory().build(rawRequest);
+
+        var uri = new URI(request)
+                .setHostAddress()
+                .setPort()
                 .setPath("/hello")
                 .toString();
         assertEquals(uri, "http://localhost:5000/hello");
     }
 
     @Test
-    void returnsURIWithProtocolWhenProtocolIsNull() {
-        var uri = new URI()
-                .setHostAddress("localhost")
-                .setPort(5000)
-                .setPath("/hello")
-                .toString();
-        assertEquals(uri, "http://localhost:5000/hello");
-    }
+    void returnsURIAsAStringWithProtocolHostPortAndPathWhenThereIsNotARequestBody() {
+        var rawRequest = "GET /simple_get HTTP/1.1\r\nHost: localhost:5000\r\n";
+        var request = new RequestFactory().build(rawRequest);
 
-    @Test
-    void returnsURIWithDefaultHostAddressWhenHostAddressIsNull() {
-        var uri = new URI()
-                .setProtocol("http")
-                .setPort(5000)
-                .setPath("/hello")
-                .toString();
-        assertEquals(uri, "http://127.0.0.1:5000/hello");
-    }
-
-    @Test
-    void returnsURIAsAStringWithoutPath() {
-        var uri = new URI()
-                .setProtocol("http")
-                .setHostAddress("localhost")
-                .setPort(5000)
-                .toString();
-        assertEquals(uri, "http://localhost:5000");
-    }
-
-    @Test
-    void returnsURIWithPortEnvValueWhenPortIsNotDefined() {
-        var uri = new URI()
-                .setProtocol("http")
-                .setHostAddress("localhost")
+        var uri = new URI(request)
+                .setHostAddress()
+                .setPort()
                 .setPath("/hello")
                 .toString();
         assertEquals(uri, "http://localhost:5000/hello");

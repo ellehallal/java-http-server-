@@ -1,31 +1,13 @@
 package httpserver.http.route.requestmethod;
 
+import httpserver.http.request.Request;
+
 public class URIFactory {
 
-    public static URI build
-            (String protocol, String hostAddress, Integer port, String path) {
-        return new URI()
-                .setProtocol(protocol)
-                .setHostAddress(hostAddress)
-                .setPort(port)
-                .setPath(path);
-    }
-
-    public static URI build(String hostAddress, Integer port, String path) {
-        return new URI()
-                .setHostAddress(hostAddress)
-                .setPort(port)
-                .setPath(path);
-    }
-
-    public static URI build(Integer port, String path) {
-        return new URI()
-                .setPort(port)
-                .setPath(path);
-    }
-
-    public static URI build(String path) {
-        return new URI()
+  public static URI build(Request request, String path) {
+        return new URI(request)
+                .setHostAddress()
+                .setPort()
                 .setPath(path);
     }
 }

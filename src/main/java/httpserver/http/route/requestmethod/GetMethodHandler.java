@@ -18,7 +18,7 @@ public class GetMethodHandler extends MethodHandler {
             case "/redirect":
                 return ResponseFactory.build
                         (StatusCode.MOVED_PERMANENTLY, "Location",
-                                URIFactory.build("/simple_get").toString(), null);
+                                URIFactory.build(request, "/simple_get").toString(), null);
             default:
                 return ResponseFactory.build(StatusCode.NOT_FOUND, null, null, null);
         }
