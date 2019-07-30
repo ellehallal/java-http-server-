@@ -19,6 +19,6 @@ public class Messages {
     }
 
     public static String serverSocketExceptionMessage() {
-        return "ServerRunner socket exception ";
+        return "Server socket exception ";
     }
 }

@@ -38,6 +38,6 @@ class MessagesTest {
     void returnsServerSocketExceptionMessage() {
         var message = Messages.serverSocketExceptionMessage();
 
-        assertEquals("ServerRunner socket exception ", message);
+        assertEquals("Server socket exception ", message);
     }
 }
