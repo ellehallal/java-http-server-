@@ -1,5 +1,6 @@
 package httpserver.server;
 
+import httpserver.http.route.RouteHandler;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -13,7 +14,8 @@ class ServerRunnerTest {
 
         var fakeServerSocket = new FakeServerSocket();
         var executor = new CurrentThreadExecutor();
-        var server = new ServerRunner(fakeServerSocket, executor);
+        var routeHandler = new RouteHandler();
+        var server = new ServerRunner(fakeServerSocket, executor, routeHandler);
 
         server.listenForClient();
 

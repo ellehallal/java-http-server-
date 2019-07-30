@@ -13,10 +13,12 @@ import java.io.PrintWriter;
 public class RequestResponseHandler {
     private final BufferedReader input;
     private final PrintWriter output;
+    private final RouteHandler routeHandler;
 
-    public RequestResponseHandler(BufferedReader input, PrintWriter output) {
+    public RequestResponseHandler(BufferedReader input, PrintWriter output, RouteHandler routeHandler) {
         this.input = input;
         this.output = output;
+        this.routeHandler = routeHandler;
     }
 
     public void run() {
@@ -32,7 +34,7 @@ public class RequestResponseHandler {
     }
 
     private Response getResponse(Request request) {
-        return RouteHandler.getResponse(request);
+        return routeHandler.getResponse(request);
     }
 
     private String parseResponse(Response response) {

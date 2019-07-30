@@ -1,5 +1,7 @@
 package httpserver.server;
 
+import httpserver.http.route.RouteHandler;
+
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.util.concurrent.Executors;
@@ -12,10 +14,10 @@ public class Server {
         this.port = port;
     }
 
-    public void start() {
+    public void start(RouteHandler routeHandler) {
         try {
             var serverSocket = createServerSocket();
-            startServer(serverSocket);
+            startServer(serverSocket, routeHandler);
         } catch (Exception e) {
             ExceptionHandler.handleException(e);
         }
@@ -29,8 +31,8 @@ public class Server {
         }
     }
 
-    private void startServer(ServerSocket serverSocket) {
+    private void startServer(ServerSocket serverSocket, RouteHandler routeHandler) {
         var executor = Executors.newCachedThreadPool();
-        new ServerRunner(serverSocket, executor).start();
+        new ServerRunner(serverSocket, executor, routeHandler).start();
     }
 }

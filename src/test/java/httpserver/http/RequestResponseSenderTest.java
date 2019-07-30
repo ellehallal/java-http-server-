@@ -1,5 +1,6 @@
 package httpserver.http;
 
+import httpserver.http.route.RouteHandler;
 import httpserver.server.RequestResponseHandler;
 import org.junit.jupiter.api.Test;
 
@@ -19,7 +20,8 @@ class RequestResponseSenderTest {
         var input = new BufferedReader(stringReader);
         var stringWriter = new StringWriter();
         var output = new PrintWriter(stringWriter);
-        var requestResponseHandler = new RequestResponseHandler(input, output);
+        var routeHandler = new RouteHandler();
+        var requestResponseHandler = new RequestResponseHandler(input, output, routeHandler);
 
         requestResponseHandler.run();
 

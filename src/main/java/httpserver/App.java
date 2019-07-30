@@ -1,5 +1,6 @@
 package httpserver;
 
+import httpserver.http.route.RouteHandler;
 import httpserver.server.ConsoleWriter;
 import httpserver.server.Server;
 
@@ -9,8 +10,9 @@ public class App {
     public static void main(String[] args) {
         var port = checkPort(args);
         var server = new Server(port);
+        var routeHandler = new RouteHandler();
 
-        server.start();
+        server.start(routeHandler);
     }
 
     private static int checkPort(String[] args) {
