@@ -6,7 +6,7 @@ import httpserver.route.requestmethod.MethodHandlerFactory;
 
 public class RouteHandler {
 
-    public static Response getResponse(Request request) {
+    public Response getResponse(Request request) {
         var clientRequestMethod = request.getRequestMethod();
         var methodHandler = MethodHandlerFactory.getHandler(clientRequestMethod);
 
