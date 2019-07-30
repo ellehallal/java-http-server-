@@ -1,8 +1,11 @@
 package httpserver.http.request;
 
+import java.util.HashMap;
+
 public class Request {
     private String requestMethod;
     private String requestPath;
+    private HashMap requestHeaders;
     private String requestBody;
 
     public String getRequestMethod() {
@@ -20,6 +23,15 @@ public class Request {
 
     public Request setRequestPath(String requestPath) {
         this.requestPath = requestPath;
+        return this;
+    }
+
+    public HashMap getRequestHeaders() {
+        return requestHeaders;
+    }
+
+    public Request setRequestHeaders(HashMap requestHeaders) {
+        this.requestHeaders = requestHeaders;
         return this;
     }
 

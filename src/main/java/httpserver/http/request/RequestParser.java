@@ -28,11 +28,17 @@ public class RequestParser {
 
         if(!isRequestBodyEmpty()) endOfHeadersIndex -=1;
 
+            if(endOfHeadersIndex < 1) {
+                return requestHeaders;
+            }
+
         var rawRequestHeaders = Arrays.copyOfRange(splitRequest, 1, endOfHeadersIndex);
 
         for (String header : rawRequestHeaders) {
-            var splitHeader = header.split(": ");
-            requestHeaders.put(splitHeader[0], splitHeader[1]);
+            if(!header.isEmpty()) {
+                var splitHeader = header.split(": ");
+                requestHeaders.put(splitHeader[0], splitHeader[1]);
+            }
         }
         return requestHeaders;
     }

@@ -7,7 +7,7 @@ public class RequestFactory {
         return new Request()
                 .setRequestMethod(requestParser.getRequestMethod())
                 .setRequestPath(requestParser.getRequestPath())
+                .setRequestHeaders(requestParser.getRequestHeaders())
                 .setRequestBody(requestParser.getRequestBody());
-
     }
 }
