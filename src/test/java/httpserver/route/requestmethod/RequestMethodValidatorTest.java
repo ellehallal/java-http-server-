@@ -1,4 +1,4 @@
-package httpserver.http.route.requestmethod;
+package httpserver.route.requestmethod;
 
 import org.junit.jupiter.api.Test;
 

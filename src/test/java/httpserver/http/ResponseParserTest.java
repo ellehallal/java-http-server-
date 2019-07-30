@@ -1,5 +1,7 @@
 package httpserver.http;
 
+import httpserver.Protocol;
+import httpserver.StatusCode;
 import httpserver.http.response.Response;
 import httpserver.server.ResponseParser;
 import org.junit.jupiter.api.Test;

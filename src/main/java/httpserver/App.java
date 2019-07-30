@@ -1,6 +1,6 @@
 package httpserver;
 
-import httpserver.http.route.RouteHandler;
+import httpserver.route.RouteHandler;
 import httpserver.server.ConsoleWriter;
 import httpserver.server.Server;
 

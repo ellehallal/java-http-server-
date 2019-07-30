@@ -1,6 +1,6 @@
 package httpserver.server;
 
-import httpserver.http.route.RouteHandler;
+import httpserver.route.RouteHandler;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;

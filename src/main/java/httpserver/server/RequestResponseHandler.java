@@ -5,7 +5,7 @@ import httpserver.http.request.RequestFactory;
 import httpserver.http.request.RequestReader;
 import httpserver.http.response.Response;
 import httpserver.http.response.ResponseSender;
-import httpserver.http.route.RouteHandler;
+import httpserver.route.RouteHandler;
 
 import java.io.BufferedReader;
 import java.io.PrintWriter;

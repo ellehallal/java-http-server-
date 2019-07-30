@@ -1,8 +1,8 @@
-package httpserver.http.route;
+package httpserver.route;
 
 import httpserver.http.request.Request;
 import httpserver.http.response.Response;
-import httpserver.http.route.requestmethod.MethodHandlerFactory;
+import httpserver.route.requestmethod.MethodHandlerFactory;
 
 public class RouteHandler {
 

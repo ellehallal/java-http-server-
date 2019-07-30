@@ -1,7 +1,7 @@
 package httpserver.http.request;
 
-import httpserver.http.Protocol;
-import httpserver.http.RequestMethod;
+import httpserver.Protocol;
+import httpserver.RequestMethod;
 
 public class RequestStringValidator {
 

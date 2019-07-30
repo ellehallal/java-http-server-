@@ -1,6 +1,6 @@
 package httpserver.http;
 
-import httpserver.http.route.RouteHandler;
+import httpserver.route.RouteHandler;
 import httpserver.server.RequestResponseHandler;
 import org.junit.jupiter.api.Test;
 

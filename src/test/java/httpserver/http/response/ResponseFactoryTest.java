@@ -1,6 +1,6 @@
 package httpserver.http.response;
 
-import httpserver.http.StatusCode;
+import httpserver.StatusCode;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;

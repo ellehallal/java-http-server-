@@ -1,6 +1,6 @@
-package httpserver.http.route.requestmethod;
+package httpserver.route.requestmethod;
 
-import httpserver.http.RequestMethod;
+import httpserver.RequestMethod;
 
 public class MethodHandlerFactory {
 

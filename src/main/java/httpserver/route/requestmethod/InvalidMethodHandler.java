@@ -1,6 +1,6 @@
-package httpserver.http.route.requestmethod;
+package httpserver.route.requestmethod;
 
-import httpserver.http.StatusCode;
+import httpserver.StatusCode;
 import httpserver.http.request.Request;
 import httpserver.http.response.Response;
 import httpserver.http.response.ResponseFactory;
