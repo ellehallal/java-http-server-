@@ -3,8 +3,6 @@ package httpserver.http.route.requestmethod;
 import httpserver.http.request.RequestFactory;
 import org.junit.jupiter.api.Test;
 
-import java.net.InetAddress;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class GetMethodHandlerTest {
@@ -17,7 +15,7 @@ class GetMethodHandlerTest {
         var getMethodHandler = new GetMethodHandler();
         var response = getMethodHandler.getResponse(request);
 
-        assertEquals("HTTP/1.1 200 OK" + separator, response.toString());
+        assertEquals("HTTP/1.1 200 OK\r\n\r\n", response.toString());
     }
 
     @Test
@@ -27,25 +25,20 @@ class GetMethodHandlerTest {
         var getMethodHandler = new GetMethodHandler();
         var response = getMethodHandler.getResponse(request);
 
-        assertEquals("HTTP/1.1 405 METHOD NOT ALLOWED"
-                + separator
-                + "Allow: HEAD, OPTIONS"
-                + separator, response.toString());
+        assertEquals("HTTP/1.1 405 METHOD NOT ALLOWED\r\n"
+                + "Allow: HEAD, OPTIONS\r\n\r\n", response.toString());
     }
 
     @Test
     void returnsStatusCode301WhenTheRequestPathRedirect() {
-        var rawRequest = "GET /redirect";
+        var rawRequest = "GET /redirect HTTP/1.1\r\nHost: localhost:5000\r\n\r\n";
         var request = RequestFactory.build(rawRequest);
         var getMethodHandler = new GetMethodHandler();
-        var hostAddress = InetAddress.getLoopbackAddress().getHostAddress();
 
         var response = getMethodHandler.getResponse(request);
 
-        assertEquals("HTTP/1.1 301 MOVED PERMANENTLY"
-                + separator
-                + "Location: http://"+ hostAddress +":5000/simple_get"
-                + separator, response.toString());
+        assertEquals("HTTP/1.1 301 MOVED PERMANENTLY\r\n"
+                + "Location: http://localhost:5000/simple_get\r\n\r\n", response.toString());
     }
 
     @Test
@@ -55,7 +48,6 @@ class GetMethodHandlerTest {
         var getMethodHandler = new GetMethodHandler();
         var response = getMethodHandler.getResponse(request);
 
-        assertEquals("HTTP/1.1 404 NOT FOUND" + separator, response.toString());
+        assertEquals("HTTP/1.1 404 NOT FOUND\r\n\r\n", response.toString());
     }
-
 }

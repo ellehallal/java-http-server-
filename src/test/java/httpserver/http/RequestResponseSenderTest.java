@@ -23,6 +23,6 @@ class RequestResponseSenderTest {
 
         requestResponseHandler.run();
 
-        assertEquals("HTTP/1.1 200 OK\r\n", stringWriter.toString());
+        assertEquals("HTTP/1.1 200 OK\r\n\r\n", stringWriter.toString());
     }
 }

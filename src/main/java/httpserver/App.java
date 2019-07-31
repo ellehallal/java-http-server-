@@ -1,33 +1,25 @@
 package httpserver;
 
+import httpserver.server.ConsoleWriter;
 import httpserver.server.Server;
 
-import java.io.IOException;
-import java.net.ServerSocket;
-import java.util.concurrent.Executors;
-
 public class App {
-    private static final int PORT = Integer.parseInt(System.getenv("PORT"));
+    private static final int defaultPort = 5000;
 
     public static void main(String[] args) {
-        try {
-            var serverSocket = createServerSocket();
-            startServer(serverSocket);
-        } catch (Exception e) {
-            ExceptionHandler.handleException(e);
-        }
+        var port = checkPort(args);
+        var server = new Server(port);
+
+        server.start();
     }
 
-    private static ServerSocket createServerSocket() {
-        try {
-            return new ServerSocket(PORT);
-        } catch (IOException e) {
-            throw new ServerSocketException(e);
+    private static int checkPort(String[] args) {
+        if(args.length == 0 || args[0].isEmpty()) {
+            ConsoleWriter.println("Using default port: " + defaultPort);
+            return defaultPort;
         }
-    }
 
-    private static void startServer(ServerSocket serverSocket) {
-        var executor = Executors.newCachedThreadPool();
-        new Server(serverSocket, executor).start();
+        ConsoleWriter.println("Using port: " + args[0]);
+        return Integer.parseInt(args[0]);
     }
 }

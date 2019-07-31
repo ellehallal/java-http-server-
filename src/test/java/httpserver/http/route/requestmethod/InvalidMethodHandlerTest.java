@@ -15,6 +15,6 @@ class InvalidMethodHandlerTest {
 
         var response = invalidMethodHandler.getResponse(request);
 
-        assertEquals("HTTP/1.1 400 BAD REQUEST" + "\r\n", response.toString());
+        assertEquals("HTTP/1.1 400 BAD REQUEST\r\n\r\n", response.toString());
     }
 }

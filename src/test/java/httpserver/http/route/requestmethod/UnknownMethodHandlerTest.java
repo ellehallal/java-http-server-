@@ -9,11 +9,12 @@ class UnknownMethodHandlerTest {
 
     @Test
     void returnsStatusCode405WhenRequestMethodDoesNotExist() {
-        var separator = "\r\n";
         var rawRequest = "DELETE /get_with_body HTTP/1.1";
         var request = RequestFactory.build(rawRequest);
         var unknownMethodHandler = new UnknownMethodHandler();
+
         var response = unknownMethodHandler.getResponse(request);
-        assertEquals("HTTP/1.1 405 METHOD NOT ALLOWED" + separator, response.toString());
+
+        assertEquals("HTTP/1.1 405 METHOD NOT ALLOWED\r\n\r\n", response.toString());
     }
 }

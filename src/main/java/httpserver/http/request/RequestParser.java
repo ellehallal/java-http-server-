@@ -1,5 +1,8 @@
 package httpserver.http.request;
 
+import java.util.Arrays;
+import java.util.HashMap;
+
 public class RequestParser {
     private String clientRequestString;
     private static final String SEPARATOR = "\r\n";
@@ -16,6 +19,19 @@ public class RequestParser {
     public String getRequestPath() {
         var splitRequestLine = splitRequestLine();
         return splitRequestLine[1];
+    }
+
+    public HashMap getRequestHeaders() {
+        var requestHeaders = new HashMap<String, String>();
+        var splitRequest = splitRequest();
+        var endOfHeadersIndex = getEndOfHeadersIndex(splitRequest);
+
+        if (endOfHeadersIndex >= 1) {
+            var rawRequestHeaders = Arrays.copyOfRange(splitRequest, 1, endOfHeadersIndex);
+            return addToRequestHeaders(requestHeaders, rawRequestHeaders);
+        } else {
+            return requestHeaders;
+        }
     }
 
     public String getRequestBody() {
@@ -37,11 +53,30 @@ public class RequestParser {
         return requestLine.split(" ");
     }
 
-    private String[] splitRequest () {
+    private String[] splitRequest() {
         return clientRequestString.split(SEPARATOR);
     }
 
     private boolean isRequestBodyEmpty() {
         return clientRequestString.endsWith(SEPARATOR);
+    }
+
+    private int getEndOfHeadersIndex(String[] splitRequest) {
+        var endOfHeadersIndex = splitRequest.length;
+
+        if(!isRequestBodyEmpty()) endOfHeadersIndex -= 1;
+
+        return endOfHeadersIndex;
+    }
+
+    private HashMap addToRequestHeaders(HashMap<String, String> requestHeaders, String[] rawRequestHeaders) {
+        for (String header : rawRequestHeaders) {
+            if(!header.isEmpty()) {
+                var splitHeader = header.split(": ");
+                requestHeaders.put(splitHeader[0], splitHeader[1]);
+            }
+        }
+
+        return requestHeaders;
     }
 }

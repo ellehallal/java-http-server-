@@ -1,27 +1,16 @@
 package httpserver.http.route.requestmethod;
 
-import java.net.InetAddress;
+import httpserver.http.request.Request;
 
 public class URI {
+    private final Request request;
     private String protocol = "http";
-    private String hostAddress
-            = InetAddress.getLoopbackAddress().getHostAddress();
-    private int port = Integer.parseInt(System.getenv("PORT"));
+    private String hostAddress;
+    private int port;
     private String path;
 
-    public URI setProtocol(String protocol) {
-        this.protocol = protocol;
-        return this;
-    }
-
-    public URI setHostAddress(String hostAddress) {
-        this.hostAddress = hostAddress;
-        return this;
-    }
-
-    public URI setPort(Integer port) {
-        this.port = port;
-        return this;
+    public URI(Request request) {
+        this.request = request;
     }
 
     public URI setPath(String path) {
@@ -46,5 +35,22 @@ public class URI {
 
     private String getPath() {
         return path == null ?  "" :  path;
+    }
+
+    private String getHost() {
+        var requestHeaders = request.getRequestHeaders();
+        return requestHeaders.get("Host").toString();
+    }
+
+    public URI setHostAddress() {
+        var hostHeader = getHost();
+        hostAddress = hostHeader.split(":")[0];
+        return this;
+    }
+
+    public URI setPort() {
+        var hostHeader = getHost();
+        port = Integer.parseInt(hostHeader.split(":")[1]);
+        return this;
     }
 }

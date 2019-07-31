@@ -18,6 +18,6 @@ class ResponseParserTest {
         var responseString = ResponseParser.parse(response);
 
         assertEquals("HTTP/1.1 200 OK\r\n"
-                + "Allow: GET, POST, HEAD, OPTIONS\r\n", responseString);
+                + "Allow: GET, POST, HEAD, OPTIONS\r\n\r\n", responseString);
     }
 }
