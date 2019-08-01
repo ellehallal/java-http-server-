@@ -9,14 +9,14 @@ public class Routes {
     private final HashMap<String, ArrayList<Route>> pathsAndRoutes = new HashMap<>();
 
     public void addRoute(Route route) {
-        if(doesPathExist(route.getPath())) {
+        if(isValidPath(route.getPath())) {
             addToExistingPath(route);
         } else {
             createNewPath(route);
         }
     }
 
-    private boolean doesPathExist(String path) {
+    public boolean isValidPath(String path) {
         return pathsAndRoutes.containsKey(path);
     }
 
@@ -56,7 +56,7 @@ public class Routes {
         return null;
     }
 
-    private boolean doesRouteExist(String path, RequestMethod requestMethod) {
+    public boolean doesRouteExist(String path, RequestMethod requestMethod) {
         var routes = getRoutes(path);
 
         for(Route route: routes) {
@@ -70,7 +70,7 @@ public class Routes {
     public String getValidMethods(String path) {
         var validMethods = new ArrayList<String>();
 
-        if(doesPathExist(path)) {
+        if(isValidPath(path)) {
             var routes = getRoutes(path);
 
             for(Route route: routes) {
