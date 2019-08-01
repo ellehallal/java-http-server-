@@ -2,7 +2,7 @@ package httpserver;
 
 import httpserver.route.Route;
 import httpserver.route.RouteBuilder;
-import httpserver.route.RouteHandler;
+import httpserver.route.RouteHandler2;
 import httpserver.route.Routes;
 import httpserver.route.requestmethod.URIFactory;
 import httpserver.server.ConsoleWriter;
@@ -28,10 +28,10 @@ public class App {
         routes.addRoute(redirectRoute());
         routes.addRoute(postRoute());
 
-        var routeHandler = new RouteHandler();
+        var routeHandler = new RouteHandler2(routes);
         var port = checkPort(args);
-        var server = new Server(port);
-        server.start(routeHandler);
+        var server = new Server(port, routeHandler);
+        server.start();
     }
 
     private static Route redirectRoute() {

@@ -1,6 +1,7 @@
 package httpserver.server;
 
 import httpserver.route.RouteHandler;
+import httpserver.route.RouteHandler2;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -10,11 +11,11 @@ import java.net.Socket;
 
 class ClientHandler implements Runnable {
     private final Socket socket;
-    private final RouteHandler routeHandler;
+    private final RouteHandler2 routeHandler;
     private BufferedReader input;
     private PrintWriter output;
 
-    ClientHandler(Socket socket, RouteHandler routeHandler) {
+    ClientHandler(Socket socket, RouteHandler2 routeHandler) {
         this.socket = socket;
         this.routeHandler = routeHandler;
     }

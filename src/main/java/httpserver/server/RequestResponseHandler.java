@@ -3,7 +3,7 @@ package httpserver.server;
 import httpserver.http.request.Request;
 import httpserver.http.request.RequestFactory;
 import httpserver.http.response.Response;
-import httpserver.route.RouteHandler;
+import httpserver.route.RouteHandler2;
 
 import java.io.BufferedReader;
 import java.io.PrintWriter;
@@ -11,9 +11,10 @@ import java.io.PrintWriter;
 public class RequestResponseHandler {
     private final BufferedReader input;
     private final PrintWriter output;
-    private final RouteHandler routeHandler;
+    private final RouteHandler2 routeHandler;
 
-    public RequestResponseHandler(BufferedReader input, PrintWriter output, RouteHandler routeHandler) {
+    public RequestResponseHandler(
+            BufferedReader input, PrintWriter output, RouteHandler2 routeHandler) {
         this.input = input;
         this.output = output;
         this.routeHandler = routeHandler;
