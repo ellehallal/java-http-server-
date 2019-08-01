@@ -1,15 +1,13 @@
 package httpserver.route;
 
-import httpserver.StatusCode;
 import httpserver.http.request.Request;
 import httpserver.http.response.Response;
-import httpserver.http.response.ResponseFactory;
 import httpserver.route.method.MethodHandler;
 
-public class FakeMethodHandler extends MethodHandler {
+public class FakeMethodHandler implements MethodHandler {
 
     @Override
-    public Response getResponse(Request request) {
-        return ResponseFactory.build(StatusCode.OK, null, null, null);
+    public Response handle(Request request, Response response) {
+        return response;
     }
 }

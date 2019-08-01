@@ -3,7 +3,7 @@ package httpserver.route.requestmethod;
 import httpserver.StatusCode;
 import httpserver.http.request.Request;
 import httpserver.http.response.Response;
-import httpserver.http.response.ResponseFactory;
+import httpserver.http.response.ResponseBuilder;
 
 public class GetMethodHandler extends MethodHandler {
 
@@ -12,15 +12,15 @@ public class GetMethodHandler extends MethodHandler {
 
         switch (requestPath) {
             case "/simple_get":
-                return ResponseFactory.build(StatusCode.OK, null, null, null);
+                return ResponseBuilder.build(StatusCode.OK, null, null, null);
             case "/get_with_body":
-                return ResponseFactory.build(StatusCode.METHOD_NOT_ALLOWED, "Allow", "HEAD, OPTIONS", null);
+                return ResponseBuilder.build(StatusCode.METHOD_NOT_ALLOWED, "Allow", "HEAD, OPTIONS", null);
             case "/redirect":
-                return ResponseFactory.build
+                return ResponseBuilder.build
                         (StatusCode.MOVED_PERMANENTLY, "Location",
                                 URIFactory.build(request, "/simple_get").toString(), null);
             default:
-                return ResponseFactory.build(StatusCode.NOT_FOUND, null, null, null);
+                return ResponseBuilder.build(StatusCode.NOT_FOUND, null, null, null);
         }
     }
 }

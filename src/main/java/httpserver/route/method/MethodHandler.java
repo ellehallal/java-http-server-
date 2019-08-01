@@ -3,6 +3,7 @@ package httpserver.route.method;
 import httpserver.http.request.Request;
 import httpserver.http.response.Response;
 
-public abstract class MethodHandler {
-    public abstract Response getResponse(Request request);
+@FunctionalInterface
+public interface MethodHandler {
+    Response handle(Request request, Response response);
 }

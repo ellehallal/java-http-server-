@@ -3,9 +3,9 @@ package httpserver.route.method;
 import httpserver.http.request.Request;
 import httpserver.http.response.Response;
 
-public class GetHandler extends MethodHandler {
+public class GetHandler implements MethodHandler {
     @Override
-    public Response getResponse(Request request) {
-        return null;
+    public Response handle(Request request, Response response) {
+        return response;
     }
 }

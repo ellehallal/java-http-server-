@@ -3,7 +3,7 @@ package httpserver.route.requestmethod;
 import httpserver.StatusCode;
 import httpserver.http.request.Request;
 import httpserver.http.response.Response;
-import httpserver.http.response.ResponseFactory;
+import httpserver.http.response.ResponseBuilder;
 
 public class HeadMethodHandler extends MethodHandler {
 
@@ -14,9 +14,9 @@ public class HeadMethodHandler extends MethodHandler {
         switch (requestPath) {
             case "/simple_get":
             case "/get_with_body":
-                return ResponseFactory.build(StatusCode.OK, null, null, null);
+                return ResponseBuilder.build(StatusCode.OK, null, null, null);
             default:
-                return ResponseFactory.build(StatusCode.NOT_FOUND, null, null, null);
+                return ResponseBuilder.build(StatusCode.NOT_FOUND, null, null, null);
         }
     }
 }

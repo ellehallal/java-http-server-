@@ -3,7 +3,7 @@ package httpserver.route.requestmethod;
 import httpserver.StatusCode;
 import httpserver.http.request.Request;
 import httpserver.http.response.Response;
-import httpserver.http.response.ResponseFactory;
+import httpserver.http.response.ResponseBuilder;
 
 public class PostMethodHandler extends MethodHandler {
 
@@ -14,9 +14,9 @@ public class PostMethodHandler extends MethodHandler {
 
         switch (requestPath) {
             case "/echo_body":
-                return ResponseFactory.build(StatusCode.OK, null, null, requestBody);
+                return ResponseBuilder.build(StatusCode.OK, null, null, requestBody);
             default:
-                return ResponseFactory.build(StatusCode.NOT_FOUND, null, null, null);
+                return ResponseBuilder.build(StatusCode.NOT_FOUND, null, null, null);
                 
         }
     }
