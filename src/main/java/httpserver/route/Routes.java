@@ -9,15 +9,14 @@ public class Routes {
     private final HashMap<String, ArrayList<Route>> pathsAndRoutes = new HashMap<>();
 
     public void addRoute(Route route) {
-        if(doesPathExist(route)) {
+        if(doesPathExist(route.getPath())) {
             addToExistingPath(route);
         } else {
             createNewPath(route);
         }
     }
 
-    private boolean doesPathExist(Route route) {
-        var path = route.getPath();
+    private boolean doesPathExist(String path) {
         return pathsAndRoutes.containsKey(path);
     }
 
@@ -66,5 +65,19 @@ public class Routes {
             }
         }
         return false;
+    }
+
+    public String getValidMethods(String path) {
+        var validMethods = new ArrayList<String>();
+
+        if(doesPathExist(path)) {
+            var routes = getRoutes(path);
+
+            for(Route route: routes) {
+                validMethods.add(route.getRequestMethod().toString());
+            }
+            return String.join(", ", validMethods);
+        }
+        return "";
     }
 }

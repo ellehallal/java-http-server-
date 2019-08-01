@@ -62,4 +62,18 @@ class RoutesTest {
         assertEquals(1, allRoutes.size());
         assertEquals(1, allRoutes.get("/simple_get").size());
     }
+
+    @Test
+    void returnsValidMethodsForPathAsAString() {
+        var methodHandler = new FakeMethodHandler();
+        var routes = new Routes();
+        var getSimpleGetRoute = RouteBuilder.build(RequestMethod.GET, "/simple_get", methodHandler);
+        var postSimpleGetRoute = RouteBuilder.build(RequestMethod.POST, "/simple_get", methodHandler);
+        routes.addRoute(getSimpleGetRoute);
+        routes.addRoute(postSimpleGetRoute);
+
+        var validMethods = routes.getValidMethods("/simple_get");
+
+        assertEquals("GET, POST", validMethods);
+    }
 }
