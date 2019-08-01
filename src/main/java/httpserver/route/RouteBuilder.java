@@ -1,7 +1,6 @@
 package httpserver.route;
 
 import httpserver.RequestMethod;
-import httpserver.route.method.MethodHandler;
 
 public class RouteBuilder {
 

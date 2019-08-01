@@ -1,6 +1,6 @@
 package httpserver.server;
 
-import httpserver.route.RouteHandler2;
+import httpserver.route.RouteHandler;
 import httpserver.route.Routes;
 import org.junit.jupiter.api.Test;
 
@@ -16,7 +16,7 @@ class ServerRunnerTest {
         var fakeServerSocket = new FakeServerSocket();
         var executor = new CurrentThreadExecutor();
         var routes = new Routes();
-        var routeHandler = new RouteHandler2(routes);
+        var routeHandler = new RouteHandler(routes);
         var server = new ServerRunner(fakeServerSocket, executor, routeHandler);
 
         server.listenForClient();

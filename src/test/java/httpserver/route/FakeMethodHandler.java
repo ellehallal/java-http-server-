@@ -2,7 +2,6 @@ package httpserver.route;
 
 import httpserver.http.request.Request;
 import httpserver.http.response.Response;
-import httpserver.route.method.MethodHandler;
 
 public class FakeMethodHandler implements MethodHandler {
 

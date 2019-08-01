@@ -1,7 +1,6 @@
 package httpserver.server;
 
 import httpserver.route.RouteHandler;
-import httpserver.route.RouteHandler2;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -11,9 +10,9 @@ public class ServerRunner {
     private final ServerSocket serverSocket;
     private final Executor executor;
     private boolean isServerRunning = true;
-    private final RouteHandler2 routeHandler;
+    private final RouteHandler routeHandler;
 
-    public ServerRunner(ServerSocket serverSocket, Executor executor, RouteHandler2 routeHandler) {
+    public ServerRunner(ServerSocket serverSocket, Executor executor, RouteHandler routeHandler) {
         this.serverSocket = serverSocket;
         this.executor = executor;
         this.routeHandler = routeHandler;

@@ -1,7 +1,6 @@
 package httpserver.route;
 
 import httpserver.RequestMethod;
-import httpserver.route.method.GetHandler;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -9,12 +8,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class RouteBuilderTest {
     @Test
     void createsARouteInstanceWithRequestMethodPathAndAMethodHandler() {
-        var getHandler = new GetHandler();
+        var methodHandler = new FakeMethodHandler();
         var route = RouteBuilder.build(
-                RequestMethod.GET, "/simple_get", getHandler);
+                RequestMethod.GET, "/simple_get", methodHandler);
 
         assertEquals(route.getRequestMethod(), RequestMethod.GET);
         assertEquals(route.getPath(), "/simple_get");
-        assertEquals(route.getMethodHandler(), getHandler);
+        assertEquals(route.getMethodHandler(), methodHandler);
     }
 }

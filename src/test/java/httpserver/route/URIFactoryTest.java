@@ -1,6 +1,8 @@
-package httpserver.route.requestmethod;
+package httpserver.route;
 
 import httpserver.http.request.RequestFactory;
+import httpserver.route.URI;
+import httpserver.route.URIFactory;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
