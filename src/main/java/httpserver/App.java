@@ -18,11 +18,11 @@ public class App {
         routes.addRoute(routeWithDefaultHandler(RequestMethod.GET, "/method_options"));
         routes.addRoute(routeWithDefaultHandler(RequestMethod.HEAD, "/method_options"));
         routes.addRoute(routeWithDefaultHandler(RequestMethod.OPTIONS, "/method_options"));
-        routes.addRoute(routeWithDefaultHandler(RequestMethod.GET, "/method_options_2"));
-        routes.addRoute(routeWithDefaultHandler(RequestMethod.HEAD, "/method_options_2"));
-        routes.addRoute(routeWithDefaultHandler(RequestMethod.OPTIONS, "/method_options_2"));
-        routes.addRoute(routeWithDefaultHandler(RequestMethod.PUT, "/method_options_2"));
-        routes.addRoute(routeWithDefaultHandler(RequestMethod.POST, "/method_options_2"));
+        routes.addRoute(routeWithDefaultHandler(RequestMethod.GET, "/method_options2"));
+        routes.addRoute(routeWithDefaultHandler(RequestMethod.HEAD, "/method_options2"));
+        routes.addRoute(routeWithDefaultHandler(RequestMethod.OPTIONS, "/method_options2"));
+        routes.addRoute(routeWithDefaultHandler(RequestMethod.PUT, "/method_options2"));
+        routes.addRoute(routeWithDefaultHandler(RequestMethod.POST, "/method_options2"));
         routes.addRoute(routeWithDefaultHandler(RequestMethod.HEAD, "/get_with_body"));
         routes.addRoute(routeWithDefaultHandler(RequestMethod.OPTIONS, "/get_with_body"));
         routes.addRoute(redirectRoute());
