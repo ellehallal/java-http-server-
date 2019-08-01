@@ -31,7 +31,6 @@ public class RouteHandler {
         }  else {
             return getRouteHandler(request, response);
         }
-//        return getRouteHandler(request, response);
     }
 
     private Response createEmptyResponse() {
@@ -41,11 +40,13 @@ public class RouteHandler {
 
     private boolean isRequestMethodInvalid(Request request) {
         var requestMethod = RequestMethod.valueOf(request.getRequestMethod());
+
         return requestMethod == RequestMethod.INVALID;
     }
 
     private Response createBadRequestResponse(Response response) {
         response.setStatusCode(StatusCode.BAD_REQUEST);
+
         return response;
     }
 
@@ -60,6 +61,7 @@ public class RouteHandler {
     private boolean isRequestMethodInvalidForPath(Request request) {
         var requestPath = request.getRequestPath();
         var requestMethod = RequestMethod.valueOf(request.getRequestMethod());
+
         return !routes.doesRouteExist(requestPath, requestMethod);
     }
 
@@ -74,6 +76,7 @@ public class RouteHandler {
 
     private boolean isOptionsRequest(Request request) {
         var requestMethod = RequestMethod.valueOf(request.getRequestMethod());
+
         return requestMethod == RequestMethod.OPTIONS;
     }
 
@@ -88,6 +91,7 @@ public class RouteHandler {
         var requestPath = request.getRequestPath();
         var requestMethod = RequestMethod.valueOf(request.getRequestMethod());
         var route = routes.getASingleRoute(requestPath, requestMethod);
+
         return route.getMethodHandler().handle(request, response);
     }
 }

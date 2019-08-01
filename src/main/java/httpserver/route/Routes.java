@@ -8,12 +8,13 @@ import java.util.HashMap;
 public class Routes {
     private final HashMap<String, ArrayList<Route>> pathsAndRoutes = new HashMap<>();
 
-    public void addRoute(Route route) {
+    public Routes addRoute(Route route) {
         if(isValidPath(route.getPath())) {
             addToExistingPath(route);
         } else {
             createNewPath(route);
         }
+        return this;
     }
 
     public boolean isValidPath(String path) {
