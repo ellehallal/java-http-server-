@@ -10,13 +10,13 @@ public class App {
     public static void main(String[] args) {
         var routes = RouteConfig.create();
         var routeHandler = new RouteHandler(routes);
-        var port = checkPort(args);
+        var port = getPort(args);
         var server = new Server(port, routeHandler);
 
         server.start();
     }
 
-    private static int checkPort(String[] args) {
+    private static int getPort(String[] args) {
         if (args.length == 0 || args[0].isEmpty()) {
             ConsoleWriter.println("Using default port: " + defaultPort);
             return defaultPort;
