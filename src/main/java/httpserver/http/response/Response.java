@@ -1,7 +1,7 @@
 package httpserver.http.response;
 
-import httpserver.http.Protocol;
-import httpserver.http.StatusCode;
+import httpserver.Protocol;
+import httpserver.StatusCode;
 
 public class Response {
     private Protocol protocol;

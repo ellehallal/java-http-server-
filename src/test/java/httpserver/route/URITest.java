@@ -1,6 +1,7 @@
-package httpserver.http.route.requestmethod;
+package httpserver.route;
 
 import httpserver.http.request.RequestFactory;
+import httpserver.route.URI;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

@@ -1,7 +1,5 @@
 package httpserver.server;
 
-import httpserver.http.request.ReadRequestException;
-
 
 public class ExceptionHandler {
 

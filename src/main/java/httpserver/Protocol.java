@@ -1,4 +1,4 @@
-package httpserver.http;
+package httpserver;
 
 public enum Protocol {
     HTTP_1_1("HTTP/1.1");

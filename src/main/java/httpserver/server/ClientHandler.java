@@ -1,5 +1,7 @@
 package httpserver.server;
 
+import httpserver.route.RouteHandler;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -8,11 +10,13 @@ import java.net.Socket;
 
 class ClientHandler implements Runnable {
     private final Socket socket;
+    private final RouteHandler routeHandler;
     private BufferedReader input;
     private PrintWriter output;
 
-    ClientHandler(Socket socket) {
+    ClientHandler(Socket socket, RouteHandler routeHandler) {
         this.socket = socket;
+        this.routeHandler = routeHandler;
     }
 
     @Override
@@ -33,7 +37,7 @@ class ClientHandler implements Runnable {
     }
 
     private void sendRequestAndSendResponse() {
-        new RequestResponseHandler(input, output).run();
+        new RequestResponseHandler(input, output, routeHandler).run();
     }
 
     private void closeConnection() {

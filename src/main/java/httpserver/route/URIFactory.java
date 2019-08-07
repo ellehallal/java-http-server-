@@ -1,4 +1,4 @@
-package httpserver.http.route.requestmethod;
+package httpserver.route;
 
 import httpserver.http.request.Request;
 

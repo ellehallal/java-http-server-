@@ -1,4 +1,4 @@
-package httpserver.http.response;
+package httpserver.server;
 
 import java.io.PrintWriter;
 

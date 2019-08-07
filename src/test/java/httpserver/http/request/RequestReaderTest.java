@@ -1,5 +1,6 @@
 package httpserver.http.request;
 
+import httpserver.server.RequestReader;
 import org.junit.jupiter.api.Test;
 
 import java.io.BufferedReader;

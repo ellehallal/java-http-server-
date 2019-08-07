@@ -1,5 +1,6 @@
 package httpserver.http.response;
 
+import httpserver.server.ResponseSender;
 import org.junit.jupiter.api.Test;
 
 import java.io.PrintWriter;
