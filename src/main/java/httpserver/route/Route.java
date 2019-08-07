@@ -7,7 +7,6 @@ public class Route {
     private String path;
     private MethodHandler methodHandler;
 
-
     public Route setRequestMethod(RequestMethod requestMethod) {
         this.requestMethod = requestMethod;
         return this;

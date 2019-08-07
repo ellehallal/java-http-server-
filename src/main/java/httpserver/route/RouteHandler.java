@@ -14,28 +14,21 @@ public class RouteHandler {
     }
 
     public Response getResponse(Request request) {
-        var response = createEmptyResponse();
-
         if(isRequestMethodInvalid(request)) {
-            return createBadRequestResponse(response);
+            return createBadRequestResponse();
 
         } else if(isRequestPathInvalid(request)) {
-            return createNotFoundResponse(response);
+            return createNotFoundResponse();
 
         } else if(isRequestMethodInvalidForPath(request)) {
-            return createMethodNotAllowedResponse(request, response);
+            return createMethodNotAllowedResponse(request);
 
         } else if(isOptionsRequest(request)) {
-            return createOptionsResponse(request, response);
+            return createOptionsResponse(request);
 
         }  else {
-            return getRouteHandler(request, response);
+            return getRouteHandler(request);
         }
-    }
-
-    private Response createEmptyResponse() {
-        return ResponseBuilder.build(
-                StatusCode.OK, null, null, null);
     }
 
     private boolean isRequestMethodInvalid(Request request) {
@@ -44,18 +37,18 @@ public class RouteHandler {
         return requestMethod == RequestMethod.INVALID;
     }
 
-    private Response createBadRequestResponse(Response response) {
-        response.setStatusCode(StatusCode.BAD_REQUEST);
-
-        return response;
+    private Response createBadRequestResponse() {
+        return ResponseBuilder.build(
+                StatusCode.BAD_REQUEST, null, null, null);
     }
 
     private boolean isRequestPathInvalid(Request request) {
         return !routes.isValidPath(request.getRequestPath());
     }
 
-    private Response createNotFoundResponse(Response response) {
-        return response.setStatusCode(StatusCode.NOT_FOUND);
+    private Response createNotFoundResponse() {
+        return ResponseBuilder.build(
+                StatusCode.NOT_FOUND, null, null, null);
     }
 
     private boolean isRequestMethodInvalidForPath(Request request) {
@@ -65,13 +58,12 @@ public class RouteHandler {
         return !routes.doesRouteExist(requestPath, requestMethod);
     }
 
-    private Response createMethodNotAllowedResponse(Request request, Response response) {
+    private Response createMethodNotAllowedResponse(Request request) {
         var requestPath = request.getRequestPath();
         var validRequestMethods = routes.getValidMethods(requestPath);
 
-        return response
-                .setStatusCode(StatusCode.METHOD_NOT_ALLOWED)
-                .setHeaders("Allow", validRequestMethods);
+        return ResponseBuilder.build(
+                StatusCode.METHOD_NOT_ALLOWED, "Allow", validRequestMethods, null);
     }
 
     private boolean isOptionsRequest(Request request) {
@@ -80,17 +72,20 @@ public class RouteHandler {
         return requestMethod == RequestMethod.OPTIONS;
     }
 
-    private Response createOptionsResponse(Request request, Response response) {
+    private Response createOptionsResponse(Request request) {
         var requestPath = request.getRequestPath();
         var validRequestMethods = routes.getValidMethods(requestPath);
 
-        return response.setHeaders("Allow", validRequestMethods);
+        return ResponseBuilder.build(
+                StatusCode.OK, "Allow", validRequestMethods, null);
     }
 
-    private Response getRouteHandler(Request request, Response response) {
+    private Response getRouteHandler(Request request) {
         var requestPath = request.getRequestPath();
         var requestMethod = RequestMethod.valueOf(request.getRequestMethod());
         var route = routes.getASingleRoute(requestPath, requestMethod);
+        var response = ResponseBuilder.build(
+                StatusCode.OK, null, null, null);
 
         return route.getMethodHandler().handle(request, response);
     }
