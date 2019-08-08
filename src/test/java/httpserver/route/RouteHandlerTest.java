@@ -3,6 +3,7 @@ package httpserver.route;
 import httpserver.RequestMethod;
 import httpserver.StatusCode;
 import httpserver.http.request.Request;
+import httpserver.http.response.ResponseBuilder;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
@@ -10,32 +11,34 @@ import java.util.HashMap;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class RouteHandlerTest {
+    private MethodHandler methodHandler = (request) -> ResponseBuilder.build(
+            StatusCode.OK, null, null, request.getRequestBody());
+
     @Test
     void returns200StatusWithNoHeadersAndEmptyBodyWhenRequestPathIsSimpleGet() {
-        var methodHandler = new FakeMethodHandler();
-        var routes = new Routes();
-        routes.addRoute(RouteBuilder.build(RequestMethod.GET, "/simple_get", methodHandler));
-        var request = new Request()
+        var simpleGetRequest = new Request()
                 .setRequestMethod("GET")
                 .setRequestPath("/simple_get");
+        var routes = new Routes();
+        routes.addRoute(RouteBuilder.build(RequestMethod.GET, "/simple_get", methodHandler));
+
         var routeHandler = new RouteHandler(routes);
 
-        var response = routeHandler.getResponse(request);
+        var response = routeHandler.getResponse(simpleGetRequest);
 
         assertEquals("HTTP/1.1 200 OK\r\n\r\n", response.toString());
     }
 
     @Test
     void returnsStatusCode200WhenTheRequestMethodIsHeadAndPathIsSimpleGet() {
-        var methodHandler = new FakeMethodHandler();
         var routes = new Routes();
         routes.addRoute(RouteBuilder.build(RequestMethod.HEAD, "/simple_get", methodHandler));
-        var request = new Request()
+        var simpleHeadRequest = new Request()
                 .setRequestMethod("HEAD")
                 .setRequestPath("/simple_get");
         var routeHandler = new RouteHandler(routes);
 
-        var response = routeHandler.getResponse(request);
+        var response = routeHandler.getResponse(simpleHeadRequest);
 
         assertEquals("HTTP/1.1 200 OK\r\n\r\n", response.toString());
     }
@@ -43,7 +46,6 @@ class RouteHandlerTest {
 
     @Test
     void returns200StatusWithAllowHeaderWhenRequestMethodIsOptionsAndPathIsMethodOptions() {
-        var methodHandler = new FakeMethodHandler();
         var routes = new Routes();
         routes.addRoute(RouteBuilder.build(RequestMethod.GET, "/method_options", methodHandler));
         routes.addRoute(RouteBuilder.build(RequestMethod.HEAD, "/method_options", methodHandler));
@@ -61,7 +63,6 @@ class RouteHandlerTest {
 
     @Test
     void returns200StatusWithAllowHeaderWhenRequestMethodIsOptionsAndPathIsMethodOptions2() {
-        var methodHandler = new FakeMethodHandler();
         var routes = new Routes();
         routes.addRoute(RouteBuilder.build(RequestMethod.GET, "/method_options2", methodHandler));
         routes.addRoute(RouteBuilder.build(RequestMethod.HEAD, "/method_options2", methodHandler));
@@ -81,9 +82,8 @@ class RouteHandlerTest {
 
     @Test
     void returnsStatusCode405AndAllowHeaderWhenRequestMethodIsGetAndPathIsGetWithBody() {
-        var methodHandler = new FakeMethodHandler();
         var routes = new Routes();
-        routes.addRoute(RouteBuilder.build(RequestMethod.HEAD, "/get_with_body", methodHandler));
+        routes.addRoute(RouteBuilder.build(RequestMethod.HEAD, "/get_with_body", (methodHandler)));
         routes.addRoute(RouteBuilder.build(RequestMethod.OPTIONS, "/get_with_body", methodHandler));
         var request = new Request()
                 .setRequestMethod("GET")
@@ -98,7 +98,6 @@ class RouteHandlerTest {
 
     @Test
     void returnsStatusCode200WhenTheRequestMethodIsHeadAndPathIsGetWithBody() {
-        var methodHandler = new FakeMethodHandler();
         var routes = new Routes();
         routes.addRoute(RouteBuilder.build(RequestMethod.HEAD, "/get_with_body", methodHandler));
         var request = new Request()
@@ -120,10 +119,9 @@ class RouteHandlerTest {
                 .setRequestPath("/redirect")
                 .setRequestHeaders(requestHeaders);
         var routes = new Routes();
-        routes.addRoute(RouteBuilder.build(RequestMethod.GET, "/redirect", (request, response) -> {
-                    response.setStatusCode(StatusCode.MOVED_PERMANENTLY)
-                            .setHeaders("Location", URIFactory.build(request, "/simple_get").toString());
-                    return response;
+        routes.addRoute(RouteBuilder.build(RequestMethod.GET, "/redirect", (request) -> {
+            return ResponseBuilder.build(
+                    StatusCode.MOVED_PERMANENTLY, "Location", URIFactory.build(request, "/simple_get").toString(), null);
                 }));
         var routeHandler = new RouteHandler(routes);
 
@@ -136,10 +134,9 @@ class RouteHandlerTest {
     @Test
     void returnsStatusCode200WithHeadersAndRequestBodyWhenPathIsEchoBody() {
         var routes = new Routes();
-        routes.addRoute(RouteBuilder.build(RequestMethod.POST, "/echo_body",
-                (request, response) -> {
-                    response.setBody(request.getRequestBody());
-                    return response;
+        routes.addRoute(RouteBuilder.build(RequestMethod.POST, "/echo_body", (request) -> {
+            return ResponseBuilder.build(
+                    StatusCode.OK, null, null, request.getRequestBody());
                 }));
         var request = new Request()
                 .setRequestMethod("POST")

@@ -1,5 +1,6 @@
 package httpserver;
 
+import httpserver.http.response.ResponseBuilder;
 import httpserver.route.Route;
 import httpserver.route.RouteBuilder;
 import httpserver.route.Routes;
@@ -38,24 +39,17 @@ public class RouteConfig {
     }
 
     private static Route redirectRoute() {
-        return RouteBuilder.build(RequestMethod.GET, "/redirect", (request, response) -> {
-            response.setStatusCode(StatusCode.MOVED_PERMANENTLY)
-                    .setHeaders("Location", URIFactory.build(request, "/simple_get").toString());
-            return response;
-        });
+        return RouteBuilder.build(RequestMethod.GET, "/redirect", (request) -> ResponseBuilder.build(
+                StatusCode.MOVED_PERMANENTLY, "Location", URIFactory.build(request, "/simple_get").toString(), null));
     }
 
     private static Route postRoute() {
-        return RouteBuilder.build(RequestMethod.POST, "/echo_body", (request, response) -> {
-            response.setBody(request.getRequestBody());
-            return response;
-        });
+        return RouteBuilder.build(RequestMethod.POST, "/echo_body", (request) -> ResponseBuilder.build(
+                StatusCode.OK, null, null, request.getRequestBody()));
     }
 
     private static Route routeWithDefaultHandler(RequestMethod requestMethod, String path) {
-        return RouteBuilder.build(requestMethod, path, (request, response) -> {
-            response.setStatusCode(StatusCode.OK);
-            return response;
-        });
+        return RouteBuilder.build(requestMethod, path, (request) -> ResponseBuilder.build(
+                StatusCode.OK, null, null, request.getRequestBody()));
     }
 }

@@ -84,9 +84,7 @@ public class RouteHandler {
         var requestPath = request.getRequestPath();
         var requestMethod = RequestMethod.valueOf(request.getRequestMethod());
         var route = routes.getASingleRoute(requestPath, requestMethod);
-        var response = ResponseBuilder.build(
-                StatusCode.OK, null, null, null);
 
-        return route.getMethodHandler().handle(request, response);
+        return route.getMethodHandler().handle(request);
     }
 }
