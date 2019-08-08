@@ -1,6 +1,8 @@
 package httpserver.route;
 
 import httpserver.RequestMethod;
+import httpserver.StatusCode;
+import httpserver.http.response.ResponseBuilder;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -8,8 +10,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class RoutesTest {
     @Test
     void addsARouteObjectToANewPath() {
-
-        var methodHandler = new FakeMethodHandler();
+        var fakeResponse = ResponseBuilder.build(StatusCode.OK, null, null, null);
+        var methodHandler = new FakeMethodHandler(fakeResponse);
         var routes = new Routes();
         var route = RouteBuilder.build(RequestMethod.GET, "/simple_get", methodHandler);
 
@@ -25,8 +27,8 @@ class RoutesTest {
 
     @Test
     void addsARouteObjectToAnExistingPath() {
-
-        var methodHandler = new FakeMethodHandler();
+        var fakeResponse = ResponseBuilder.build(StatusCode.OK, null, null, null);
+        var methodHandler = new FakeMethodHandler(fakeResponse);
         var routes = new Routes();
         var getSimpleGetRoute = RouteBuilder.build(RequestMethod.GET, "/simple_get", methodHandler);
         var postSimpleGetRoute = RouteBuilder.build(RequestMethod.POST, "/simple_get", methodHandler);
@@ -49,8 +51,8 @@ class RoutesTest {
 
     @Test
     void ifRouteExistsItIsNotAddedToRoutes() {
-
-        var methodHandler = new FakeMethodHandler();
+        var fakeResponse = ResponseBuilder.build(StatusCode.OK, null, null, null);
+        var methodHandler = new FakeMethodHandler(fakeResponse);
         var routes = new Routes();
         var getSimpleGetRoute1 = RouteBuilder.build(RequestMethod.GET, "/simple_get", methodHandler);
         var getSimpleGetRoute2 = RouteBuilder.build(RequestMethod.GET, "/simple_get", methodHandler);
@@ -65,7 +67,8 @@ class RoutesTest {
 
     @Test
     void returnsValidMethodsForPathAsAString() {
-        var methodHandler = new FakeMethodHandler();
+        var fakeResponse = ResponseBuilder.build(StatusCode.OK, null, null, null);
+        var methodHandler = new FakeMethodHandler(fakeResponse);
         var routes = new Routes();
         var getSimpleGetRoute = RouteBuilder.build(RequestMethod.GET, "/simple_get", methodHandler);
         var postSimpleGetRoute = RouteBuilder.build(RequestMethod.POST, "/simple_get", methodHandler);
